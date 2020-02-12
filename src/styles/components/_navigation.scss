@@ -1,0 +1,124 @@
+// position fixed doesnt work because its taken out of the natural flow so the grid column doesnt get applied
+// fix it with a set height and width?
+
+.navigation {
+    // position: sticky;
+    // z-index: 100000;
+
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    grid-column: full-start / full-end;
+
+    background-color: rgba(0, 0, 0, 0.85);
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+
+    &__logo-box {
+        position: relative;
+    }
+
+    &__logo {
+        font-size: 2.4rem;
+        font-weight: 300;
+        text-transform: uppercase;
+        letter-spacing: 0.32em;
+
+        &::before,
+        &::after {
+            position: absolute;
+            content: "";
+            display: inline-block;
+            width: 10rem;
+            height: 1px;
+            background-color: $color-primary;
+        }
+
+        &::before {
+            top: -40%;
+            left: -20%;
+        }
+
+        &::after {
+            bottom: -40%;
+            right: -20%;
+        }
+    }
+
+    &__search {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex: 0 0 30%;
+    }
+
+    &__search--bar {
+        font-family: $font-primary;
+        font-weight: bold;
+        font-size: 1.3rem;
+        text-transform: uppercase;
+        letter-spacing: 0.32em;
+        background-color: #f7f7f7;
+        border-radius: 1.2rem;
+        width: 90%;
+        padding: 1rem 2rem;
+        border: none;
+        transition: all .2s;
+
+        &:focus, &:active {
+            outline: none;
+            width: 100%;
+        }
+    }
+
+    &__items {
+        display: flex;
+        flex: 0 0 30%;
+        color: #f7f7f7;
+        font-weight: 300;
+        font-size: 1.6rem;
+        justify-content: space-between;
+        align-items: center;
+
+        &-box {
+            display: flex;
+            justify-content: center;
+            cursor: pointer;
+            border-top: solid 1px $color-primary;
+            border-bottom: solid 1px $color-primary;
+            width: 14rem;            
+            text-decoration: none;
+            transition: all .2s;
+
+            &:hover {
+                background-color: $color-primary;
+            }
+        }
+
+        &--item {
+            color: #f7f7f7;
+            letter-spacing: 0.32em;
+            text-transform: uppercase;
+            padding: 1.7rem 0.8rem;
+        }
+    }
+}
+
+.btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: $color-primary;
+    border-radius: 5rem;
+    width: 15rem;
+
+    &__sign-in {
+        border: none;
+        color: #fff;
+        font-family: $font-primary;
+        letter-spacing: 0.32em;
+        font-weight: bold;
+        text-transform: uppercase;
+        
+        padding: 2rem;
+    }
+}
