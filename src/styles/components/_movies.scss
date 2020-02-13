@@ -1,0 +1,27 @@
+// TODO: Make image fit the container entirely (later when using actual data)
+
+.movies {
+    grid-column: center-start / center-end;
+    
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(28.5rem, 1fr));    
+    column-gap: 4.3rem;
+    row-gap: 5.4rem;
+
+    // Setting border radius on both fixes small whitespace (idk why)
+    &__item {
+        box-shadow: 0.8rem 0.6rem 0.6rem rgba(0, 0, 0, 0.4);        
+        height: 44.5rem;
+        border-radius: 5px;
+
+        // Object-fit is a godsend never forgetti
+        &-img {
+            display: block;
+            object-fit: fill;
+            border-radius: 5px;   
+            height: 100%;
+            width: 100%;
+        }
+    }
+
+}
