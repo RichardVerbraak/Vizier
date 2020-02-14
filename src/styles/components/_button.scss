@@ -1,0 +1,36 @@
+.btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    font-size: 1.3rem;
+    background-color: $color-primary;
+    border-radius: 5rem;
+    // width: 15rem;
+    cursor: pointer;
+
+    border: none;
+    color: $color-white;
+    font-family: $font-primary;
+    letter-spacing: $letter-spacing-default;
+    font-weight: 600;
+    text-transform: uppercase;
+    
+    padding: 2rem;
+
+    &__sign-in {
+        
+    }
+
+    &__watchlist {
+        
+    }
+
+    &__imdb {
+        width: 16rem;
+    }
+
+    &__trailer {
+        width: 16rem;
+    }
+}

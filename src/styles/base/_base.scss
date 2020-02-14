@@ -13,17 +13,15 @@ html {
 body {
     position: relative;
     box-sizing: border-box;
+    background-color: $color-grey-white;
 }
 
-// 145 rem temporary
 
-#root {
+.container {
     display: grid;
     grid-template-columns: 
         [full-start] minmax(6rem, 1fr) 
         [center-start] repeat(8, [col-start] minmax(min-content, 20rem) [col-end]) [center-end] 
         minmax(6rem, 1fr) [full-end];
-    grid-template-rows: 11.5rem min-content min-content;
-
-    row-gap: 7rem;
+    // grid-template-rows: 11.5rem min-content min-content min-content;
 }

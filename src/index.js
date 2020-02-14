@@ -1,5 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
+import { BrowserRouter } from 'react-router-dom'
 import Vizier from "./Vizier";
 import './styles/styles.scss';
 import * as serviceWorker from "./serviceWorker";

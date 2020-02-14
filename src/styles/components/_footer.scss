@@ -1,3 +1,19 @@
 .footer {
-    
+    grid-column: center-start / center-end;
+    margin-bottom: 3.5rem;
+
+    &__nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        list-style: none;
+
+        &-item {
+            font-size: 1.6rem;
+            font-weight: 300;
+            text-transform: uppercase;
+            letter-spacing: $letter-spacing-small;
+            color: $color-black;
+        }
+    }
 }

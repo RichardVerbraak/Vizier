@@ -7,17 +7,18 @@
     grid-template-columns: repeat(auto-fit, minmax(28.5rem, 1fr));    
     column-gap: 4.3rem;
     row-gap: 5.4rem;
+    margin: 7rem 0;
 
     // Setting border radius on both fixes small whitespace (idk why)
     &__item {
-        box-shadow: 0.8rem 0.6rem 0.6rem rgba(0, 0, 0, 0.4);        
+        box-shadow: $box-shadow;        
         height: 44.5rem;
         border-radius: 5px;
 
         // Object-fit is a godsend never forgetti
         &-img {
             display: block;
-            object-fit: fill;
+            object-fit: cover;
             border-radius: 5px;   
             height: 100%;
             width: 100%;

@@ -1,25 +1,26 @@
 .category {
     grid-column: center-start / center-end;
+    margin-top: 7rem;
 
     &__heading {
         display: grid;
         grid-template-rows: repeat(2, min-content);
         row-gap: 1.5rem;
 
-        color: #000;
+        color: $color-black;
         text-transform: uppercase;
 
         &--main {
             justify-self: start;
             font-size: 3.6rem;
             font-weight: 400;
-            letter-spacing: 0.32em;
+            letter-spacing: $letter-spacing-default;
         }
 
         &--sub {
             font-size: 2.4rem;
             font-weight: 400;
-            letter-spacing: 0.32em;            
+            letter-spacing: $letter-spacing-default;            
         }
     }
 }

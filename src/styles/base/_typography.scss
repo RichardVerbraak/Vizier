@@ -1,10 +1,10 @@
 body {
     font-family: $font-primary;
     font-weight: 400;
+    font-size: 1.8rem;
     color: $color-primary;
 }
 
 a, a:link, a:visited, a:focus, a:hover {
     text-decoration: none;
-    color: $color-primary;
 }

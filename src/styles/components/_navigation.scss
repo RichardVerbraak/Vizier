@@ -2,16 +2,20 @@
 // fix it with a set height and width?
 
 .navigation {
-    // position: sticky;
-    // z-index: 100000;
 
     display: flex;
     justify-content: space-around;
     align-items: center;
-    grid-column: full-start / full-end;
+    height: 11rem;
+    width: 100%;
+    position: sticky;
+    top: 0;
+
+    // No longer in grid
+    // grid-column: full-start / full-end;
 
     background-color: rgba(0, 0, 0, 0.85);
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    box-shadow: $box-shadow;
 
     &__logo-box {
         position: relative;
@@ -19,9 +23,9 @@
 
     &__logo {
         font-size: 2.4rem;
-        font-weight: 300;
+        font-weight: 400;
         text-transform: uppercase;
-        letter-spacing: 0.32em;
+        letter-spacing: $letter-spacing-default;
 
         &::before,
         &::after {
@@ -56,9 +60,10 @@
         font-weight: bold;
         font-size: 1.3rem;
         text-transform: uppercase;
-        letter-spacing: 0.32em;
-        background-color: #f7f7f7;
+        letter-spacing: $letter-spacing-default;
+        background-color: $color-grey-white;
         border-radius: 1.2rem;
+        
         width: 90%;
         padding: 1rem 2rem;
         border: none;
@@ -72,20 +77,21 @@
 
     &__items {
         display: flex;
-        flex: 0 0 30%;
-        color: #f7f7f7;
+        color: $color-grey-white;
         font-weight: 300;
         font-size: 1.6rem;
-        justify-content: space-between;
         align-items: center;
 
+        // Width has to be 14 rem otherwise text will break onto new line
+        // A set margin instead of using flex-basis and justify-content, it didnt resize properly when going into smaller viewports
         &-box {
             display: flex;
             justify-content: center;
             cursor: pointer;
             border-top: solid 1px $color-primary;
             border-bottom: solid 1px $color-primary;
-            width: 14rem;            
+            width: 14rem;
+            margin: 0 2rem;            
             text-decoration: none;
             transition: all .2s;
 
@@ -96,29 +102,9 @@
 
         &--item {
             color: #f7f7f7;
-            letter-spacing: 0.32em;
+            letter-spacing: $letter-spacing-default;
             text-transform: uppercase;
             padding: 1.7rem 0.8rem;
         }
-    }
-}
-
-.btn {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: $color-primary;
-    border-radius: 5rem;
-    width: 15rem;
-
-    &__sign-in {
-        border: none;
-        color: #fff;
-        font-family: $font-primary;
-        letter-spacing: 0.32em;
-        font-weight: bold;
-        text-transform: uppercase;
-        
-        padding: 2rem;
     }
 }
