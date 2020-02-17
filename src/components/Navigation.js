@@ -1,12 +1,13 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 export default class Navigation extends React.Component {
     render() {
         return (
             <div className="navigation">
-                <div className="navigation__logo-box">
-                    <div className="navigation__logo">Vizier</div>
-                </div>                
+                <Link to="/" className="logo__box">
+                    <div className="logo">Vizier</div>
+                </Link>                
                 <form action="#" className="navigation__search">
                     <input className="navigation__search--bar" type="text" placeholder="Search Tv Shows..."></input>
                 </form>

@@ -15,38 +15,7 @@
     // grid-column: full-start / full-end;
 
     background-color: rgba(0, 0, 0, 0.85);
-    box-shadow: $box-shadow;
-
-    &__logo-box {
-        position: relative;
-    }
-
-    &__logo {
-        font-size: 2.4rem;
-        font-weight: 400;
-        text-transform: uppercase;
-        letter-spacing: $letter-spacing-default;
-
-        &::before,
-        &::after {
-            position: absolute;
-            content: "";
-            display: inline-block;
-            width: 10rem;
-            height: 1px;
-            background-color: $color-primary;
-        }
-
-        &::before {
-            top: -40%;
-            left: -20%;
-        }
-
-        &::after {
-            bottom: -40%;
-            right: -20%;
-        }
-    }
+    box-shadow: $box-shadow;    
 
     &__search {
         display: flex;

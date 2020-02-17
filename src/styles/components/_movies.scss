@@ -21,8 +21,14 @@
             object-fit: cover;
             border-radius: 5px;   
             height: 100%;
-            width: 100%;
+            width: 100%;            
         }
+    }
+
+    &__empty {
+        height: 44.5rem;
+        border-radius: 5px;
+        border: 2px dashed #949090;
     }
 
 }

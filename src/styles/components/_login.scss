@@ -1,0 +1,76 @@
+// TODO: Do something when the input is selected to make it more obvious, google nice input focus styles
+
+.login {
+
+    display: flex;
+    flex-direction: column;
+    height: 60rem;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 114rem;
+    margin: 0 auto;
+
+    &__input-group {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    &__input {
+
+        border: 1px solid #D72525;
+        background: #FFFFFF;
+        padding: 1rem 2rem;
+        width: 55rem;
+        height: 6rem;
+
+        color: $color-black;
+        text-transform: uppercase;
+        line-height: 1.6rem;
+        font-size: 1.3rem;
+        font-family: 'Quicksand';
+        font-weight: bold;
+        letter-spacing: $letter-spacing-default;
+
+        &::placeholder {
+            color: $color-black;
+        }
+
+        &:focus {
+            outline: none;
+        }
+    }
+
+    &__input:placeholder-shown + &__label {
+
+    }
+
+    &__label {
+
+    }
+
+    &__text {
+        color: $color-black;
+        text-transform: uppercase;
+        font-size: 1.3rem;
+        letter-spacing: 0.105em;
+
+        &--signup {
+            font-weight: bold;
+            text-decoration: underline;
+        }
+    }
+}
+
+// Label spanned 2000px wide for no reason, removed untill later
+
+// <div className="login__input-group">
+//                     <input className="login__input" type="text" placeholder="username" id="name"></input>
+//                     <label className="login__label" htmlFor="name">Username</label>
+//                 </div>
+
+//                 <div className="login__input-group">
+//                     <input className="login__input" type="password" placeholder="password" id="password"></input>
+//                     <label className="login__label" htmlFor="password">Password</label>
+//                 </div>
