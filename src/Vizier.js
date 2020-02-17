@@ -10,7 +10,6 @@ export default class Vizier extends React.Component {
     render() {
         return (
             <Router>
-                <Navigation></Navigation>
                 <Switch>
                     <Route exact={true} path="/">
                         <DashboardPage></DashboardPage>

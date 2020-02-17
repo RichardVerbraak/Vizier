@@ -1,4 +1,5 @@
 import React from 'react'
+import Navigation from './Navigation'
 import Category from './Category'
 import { Link } from 'react-router-dom'
 import image from '../ph-mrrobot.jpg'
@@ -8,6 +9,8 @@ import Footer from './Footer'
 export default class Watchlist extends React.Component {
     render() {
         return (
+            <>
+            <Navigation></Navigation>   
             <div className="container">
                 <Category></Category>
                 <div className="movies">
@@ -62,6 +65,7 @@ export default class Watchlist extends React.Component {
                 </div>
                 <Footer></Footer>
             </div>
+            </>
         )
     }
 }

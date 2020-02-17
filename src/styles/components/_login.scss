@@ -1,20 +1,24 @@
 // TODO: Do something when the input is selected to make it more obvious, google nice input focus styles
+// Remove padding with media queries
 
 .login {
 
     display: flex;
     flex-direction: column;
-    height: 60rem;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: center;
+    height: 100vh;
     max-width: 114rem;
     margin: 0 auto;
+    padding: 10rem;
 
     &__input-group {
         display: flex;
         flex-direction: column;
-        justify-content: center;
         align-items: center;
+        justify-content: space-between;
+        height: 20rem;
+        width: 100%;
     }
 
     &__input {
@@ -22,7 +26,7 @@
         border: 1px solid #D72525;
         background: #FFFFFF;
         padding: 1rem 2rem;
-        width: 55rem;
+        width: 60%;
         height: 6rem;
 
         color: $color-black;

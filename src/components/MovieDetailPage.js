@@ -2,6 +2,7 @@ import React from 'react'
 import image from '../ph-mrrobot.jpg'
 import cast from '../ph-rami.jpg'
 
+import Navigation from './Navigation'
 import Movies from './Movies'
 import Footer from './Footer'
 
@@ -16,6 +17,8 @@ import Footer from './Footer'
 export default class MovieDetailPage extends React.Component {
     render() {
         return (
+            <>
+            <Navigation></Navigation>   
             <div className="container">
                 <div className="movie">
                     <img className="movie__img" src={image}></img>
@@ -65,7 +68,8 @@ export default class MovieDetailPage extends React.Component {
                 </div>
                 <Movies></Movies>
                 <Footer></Footer>
-            </div>           
+            </div>
+            </>        
         )
     }
 }
