@@ -10,13 +10,13 @@
     height: 100vh;
     max-width: 114rem;
     margin: 0 auto;
-    padding: 10rem;
+    padding: 15rem;
 
     &__input-group {
         display: flex;
         flex-direction: column;
         align-items: center;
-        justify-content: space-between;
+        justify-content: space-evenly;
         height: 20rem;
         width: 100%;
     }
@@ -27,7 +27,7 @@
         background: #FFFFFF;
         padding: 1rem 2rem;
         width: 60%;
-        height: 6rem;
+        height: 5.5rem;
 
         color: $color-black;
         text-transform: uppercase;
@@ -35,10 +35,11 @@
         font-size: 1.3rem;
         font-family: 'Quicksand';
         font-weight: bold;
-        letter-spacing: $letter-spacing-default;
+        letter-spacing: $letter-spacing-small;
 
         &::placeholder {
             color: $color-black;
+            letter-spacing: $letter-spacing-default;
         }
 
         &:focus {

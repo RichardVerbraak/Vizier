@@ -5,6 +5,7 @@ import MovieDetailPage from './components/MovieDetailPage'
 import Navigation from './components/Navigation';
 import WatchlistPage from './components/WatchlistPage'
 import LoginPage from './components/LoginPage'
+import Movie from './components/Movie'
 
 export default class Vizier extends React.Component {
     render() {

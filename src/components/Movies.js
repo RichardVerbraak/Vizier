@@ -1,79 +1,45 @@
 import React from 'react'
-import image from '../ph-mrrobot.jpg'
 import { Link } from 'react-router-dom'
 
+import { connect } from 'react-redux'
+import { startGetMovies } from '../actions/movies'
 
 // Make stateless functional component that gets props from a class component that holds state and pass that in here to render the movie
 // Use map or forEach to loop through data and make an item for each one
-export default class Movies extends React.Component {
+// Presentational component (reads the data from the props) 
+class Movies extends React.Component {
+    componentDidMount() {
+        console.log('mounted')
+        this.props.startGetMovies()
+    }
+
     render() {
         return (
             <div className="movies">
-
-                <Link to="/movie" className="movies__item">
-                    <img src={image} className="movies__item-img"></img>
-                </Link>
-                <a className="movies__item">
-                    <img src={image} className="movies__item-img"></img>
-                </a>
-                <a className="movies__item">
-                    <img src={image} className="movies__item-img"></img>
-                </a>
-                <a className="movies__item">
-                    <img src={image} className="movies__item-img"></img>
-                </a>
-                <a className="movies__item">
-                    <img src={image} className="movies__item-img"></img>
-                </a>
-
-                <a className="movies__item">
-                    <img src={image} className="movies__item-img"></img>
-                </a>
-                <a className="movies__item">
-                    <img src={image} className="movies__item-img"></img>
-                </a>
-                <a className="movies__item">
-                    <img src={image} className="movies__item-img"></img>
-                </a>
-                <a className="movies__item">
-                    <img src={image} className="movies__item-img"></img>
-                </a>
-                <a className="movies__item">
-                    <img src={image} className="movies__item-img"></img>
-                </a>
-
-                <a className="movies__item">
-                    <img src={image} className="movies__item-img"></img>
-                </a>
-                <a className="movies__item">
-                    <img src={image} className="movies__item-img"></img>
-                </a>
-                <a className="movies__item">
-                    <img src={image} className="movies__item-img"></img>
-                </a>
-                <a className="movies__item">
-                    <img src={image} className="movies__item-img"></img>
-                </a>
-                <a className="movies__item">
-                    <img src={image} className="movies__item-img"></img>
-                </a>
-
-                <a className="movies__item">
-                    <img src={image} className="movies__item-img"></img>
-                </a>
-                <a className="movies__item">
-                    <img src={image} className="movies__item-img"></img>
-                </a>
-                <a className="movies__item">
-                    <img src={image} className="movies__item-img"></img>
-                </a>
-                <a className="movies__item">
-                    <img src={image} className="movies__item-img"></img>
-                </a>
-                <a className="movies__item">
-                    <img src={image} className="movies__item-img"></img>
-                </a>
+                {   
+                    this.props.movies.map((movie) => {
+                        return (
+                            <Link to="/movie" className="movies__item">
+                                <img
+                                    key={movie}
+                                    src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} 
+                                    className="movies__item-img"
+                                >
+                                </img>
+                            </Link>
+                        )
+                        
+                    })
+                }
             </div>
         )
     }
 }
+
+const mapStateToProps = (state) => {
+    return {
+        movies: state.movies
+    }
+}
+
+export default connect(mapStateToProps, {startGetMovies})(Movies)

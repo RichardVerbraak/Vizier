@@ -1,6 +1,10 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
+// TODO: The search filter should be a component of its own
+// Maybe the sign in button as well
+
+
 export default class Navigation extends React.Component {
     render() {
         return (
