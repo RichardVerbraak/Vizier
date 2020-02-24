@@ -2,33 +2,32 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 
 import { connect } from 'react-redux'
-import { startGetMovies } from '../actions/movies'
+import { startGetMovies, isLoading } from '../actions/movies'
 
-// Make stateless functional component that gets props from a class component that holds state and pass that in here to render the movie
-// Use map or forEach to loop through data and make an item for each one
-// Presentational component (reads the data from the props) 
+
 class Movies extends React.Component {
+
     componentDidMount() {
-        console.log('mounted')
         this.props.startGetMovies()
-    }
+    }    
 
     render() {
+
         return (
             <div className="movies">
                 {   
                     this.props.movies.map((movie) => {
                         return (
-                            <Link to="/movie" className="movies__item">
+                            <Link key={movie.id} to={`movie/${movie.id}`} className="movies__item">
                                 <img
-                                    key={movie}
-                                    src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} 
+                                    key={movie.id}
+                                    src={`https://image.tmdb.org/t/p/w342${movie.poster_path}`} 
                                     className="movies__item-img"
+                                    alt={`A poster of ${movie.title}`}
                                 >
                                 </img>
                             </Link>
-                        )
-                        
+                        )                      
                     })
                 }
             </div>
@@ -38,8 +37,19 @@ class Movies extends React.Component {
 
 const mapStateToProps = (state) => {
     return {
-        movies: state.movies
+        movies: state.movies,
+        isLoading: state.isLoading
     }
 }
 
-export default connect(mapStateToProps, {startGetMovies})(Movies)
+// 'Connect' the action to the component so it can be dispatched
+const mapDispatchToProps = (dispatch) => {
+    return {
+        startGetMovies: () => dispatch(startGetMovies()),
+        isLoading: () => dispatch(isLoading())
+    }
+}
+
+const ConnectedMovies = connect(mapStateToProps, mapDispatchToProps)(Movies)
+
+export default ConnectedMovies
