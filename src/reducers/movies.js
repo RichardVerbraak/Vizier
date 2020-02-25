@@ -1,6 +1,7 @@
 const initialState = {
     movies: [],
     details: [],
+    recommended: [],
     isLoading: true
 }
 

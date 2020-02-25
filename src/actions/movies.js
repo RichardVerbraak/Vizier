@@ -1,3 +1,5 @@
+const key = process.env.REACT_APP_API_KEY
+
 const getMovies = (movies) => {
     return {
         type: 'GET_MOVIES',
@@ -9,7 +11,7 @@ const getMovies = (movies) => {
 // It first fetches the data and converts it to json, the dispatches the useable data to the reducer who will change the state
 export const startGetMovies = () => { 
     return (dispatch) => {
-        fetch('https://api.themoviedb.org/3/movie/popular?api_key=880bbec69207f7697602ce098c1da63e&language=en-US&page=1')
+        fetch(`https://api.themoviedb.org/3/movie/popular?api_key=${key}&language=en-US&page=1`)
         .then((response) => {
             return response.json()
         })
@@ -39,13 +41,19 @@ export const getMovieDetails = (details) => {
 
 export const startGetMovieDetails = (id) => {
     return (dispatch) => {
-        fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=880bbec69207f7697602ce098c1da63e&language=en-US`)
+        fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=${key}&language=en-US`)
         .then((response) => {
             return response.json()
         })
         .then((data) => {
             dispatch(getMovieDetails(data))
         })
+    }
+}
+
+export const startGetMovieCast = (id) => {
+    return (dispatch) => {
+        fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=${key}&language=en-US`)
     }
 }
 

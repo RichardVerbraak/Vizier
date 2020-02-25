@@ -22,6 +22,7 @@ class MovieDetailPage extends React.Component {
     
     componentDidMount() {
         this.props.startGetMovieDetails(this.props.match.params.id)
+        // this.props.startGetMovieCast(this.props.match.params.id)
     }
 
     render() {
@@ -31,7 +32,9 @@ class MovieDetailPage extends React.Component {
                 <Navigation></Navigation>                
                 <div className="container">
                 {this.props.isLoading ? 
-                    <h1>Not done</h1> 
+                    <div>
+                    <h1>Not done</h1>
+                    </div>
                     : 
                     <div className="movie">
 
@@ -72,7 +75,7 @@ class MovieDetailPage extends React.Component {
                             
                             <div className="movie__links">
                                 <a className="movie__links--watchlist btn btn__watchlist">Add to watchlist</a>
-                                <a className="movie__links--watchlist btn btn__imdb">IMDB</a>
+                                <a className="movie__links--watchlist btn btn__imdb" href={`https://www.imdb.com/title/${this.props.details.imdb_id}/`}>IMDB</a>
                                 <a className="movie__links--watchlist btn btn__trailer">Trailer</a>
                             </div>
 
