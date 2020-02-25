@@ -1,5 +1,4 @@
-// position fixed doesnt work because its taken out of the natural flow so the grid column doesnt get applied
-// fix it with a set height and width?
+// Animate navigation items border or background? 
 
 .navigation {
 
@@ -52,7 +51,7 @@
         align-items: center;
 
         // Width has to be 14 rem otherwise text will break onto new line
-        // A set margin instead of using flex-basis and justify-content, it didnt resize properly when going into smaller viewports
+        // A set margin instead of using flex-basis and justify-content, it didnt resize properly when going into smaller viewports        
         &-box {
             display: flex;
             justify-content: center;
@@ -63,9 +62,11 @@
             margin: 0 2rem;            
             text-decoration: none;
             transition: all .2s;
+            backface-visibility: hidden;
 
             &:hover {
                 background-color: $color-primary;
+                // transform: scale(1.1);
             }
         }
 

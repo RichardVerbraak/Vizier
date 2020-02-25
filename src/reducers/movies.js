@@ -1,6 +1,7 @@
 const initialState = {
     movies: [],
     details: [],
+    cast: [],
     recommended: [],
     isLoading: true
 }
@@ -17,6 +18,17 @@ const movieReducer = (state = initialState, action) => {
             return {
                 ...state,
                 details: action.details
+            }
+        case 'GET_MOVIE_CAST':
+            return {
+                ...state,
+                cast: action.cast
+            }
+        case 'GET_RECOMMENDED': 
+            console.log('yessss')
+            return {
+                ...state,
+                recommended: action.recommended
             }
         case 'LOADING_FINISHED':
             return {

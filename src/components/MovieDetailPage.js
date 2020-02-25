@@ -1,12 +1,11 @@
 import React from 'react'
 import { connect } from 'react-redux'
 
-import {startGetMovieDetails, isLoading} from '../actions/movies'
-import image from '../ph-mrrobot.jpg'
-import cast from '../ph-rami.jpg'
+import {startGetMovieDetails, startGetMovieCast, isLoading} from '../actions/movies'
+import test from '../ph-rami.jpg'
 
 import Navigation from './Navigation'
-import Movies from './Movies'
+import Recommended from './Recommended'
 import Footer from './Footer'
 
 // Rename to movie page for different containers (grid?)
@@ -21,21 +20,17 @@ import Footer from './Footer'
 class MovieDetailPage extends React.Component {
     
     componentDidMount() {
-        this.props.startGetMovieDetails(this.props.match.params.id)
-        // this.props.startGetMovieCast(this.props.match.params.id)
+        this.props.getMovieDetails(this.props.match.params.id)
+        this.props.getMovieCast(this.props.match.params.id)
     }
 
     render() {
-        console.log(this.props.details)
+        
         return (
             <>
                 <Navigation></Navigation>                
                 <div className="container">
-                {this.props.isLoading ? 
-                    <div>
-                    <h1>Not done</h1>
-                    </div>
-                    : 
+                
                     <div className="movie">
 
                         <img className="movie__img" src={`https://image.tmdb.org/t/p/w500${this.props.details.poster_path}`}></img>
@@ -60,16 +55,16 @@ class MovieDetailPage extends React.Component {
 
                             <div className="movie__cast">
                                 <a>
-                                    <img className="movie__cast--img" src={cast}></img>
+                                    <img className="movie__cast--img" src={this.props.cast.length === 0 ? test : `https://image.tmdb.org/t/p/w185/${this.props.cast[0].profile_path}`}></img>
                                 </a>
                                 <a>
-                                    <img className="movie__cast--img" src={cast}></img>
+                                    <img className="movie__cast--img" src={test}></img>
                                 </a>
                                 <a>
-                                    <img className="movie__cast--img" src={cast}></img>
+                                    <img className="movie__cast--img" src={test}></img>
                                 </a>
                                 <a>
-                                    <img className="movie__cast--img" src={cast}></img>
+                                    <img className="movie__cast--img" src={test}></img>
                                 </a>
                             </div>
                             
@@ -83,7 +78,7 @@ class MovieDetailPage extends React.Component {
                     </div>
                 }                 
                               
-                    <Movies></Movies>
+                    <Recommended id={this.props.match.params.id}></Recommended>
                     <Footer></Footer>
                 </div>
             </>        
@@ -94,13 +89,14 @@ class MovieDetailPage extends React.Component {
 const mapStateToProps = (state) => {
     return {
         details: state.details,
-        isLoading: state.isLoading
+        cast: state.cast
     }
 }
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        startGetMovieDetails: (id) => dispatch(startGetMovieDetails(id))
+        getMovieDetails: (id) => dispatch(startGetMovieDetails(id)),
+        getMovieCast: (id) => dispatch(startGetMovieCast(id))
     }
 }
 

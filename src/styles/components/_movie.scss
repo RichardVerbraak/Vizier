@@ -8,10 +8,10 @@
     margin-top: 12.5rem;
     // margin: 12.5rem 0;
     
-
+    // Some look better with object fit off?
     &__img {
         box-shadow: $box-shadow;
-        object-fit: cover;
+        // object-fit: cover;
         height: 70rem;
         width: 50rem;
         border-radius: 5px;

@@ -23,7 +23,6 @@ export const startGetMovies = () => {
 }
 
 export const isLoading = () => {
-    console.log('???')
     return {
         type: 'LOADING_FINISHED',
         isLoading: false
@@ -51,9 +50,41 @@ export const startGetMovieDetails = (id) => {
     }
 }
 
+export const getMovieCast = (cast) => {
+    return {
+        type: 'GET_MOVIE_CAST',
+        cast
+    }
+}
+
 export const startGetMovieCast = (id) => {
     return (dispatch) => {
-        fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=${key}&language=en-US`)
+        fetch(`https://api.themoviedb.org/3/movie/${id}/credits?api_key=${key}`)
+        .then((response) => {
+            return response.json()
+        })
+        .then((data) => {
+            dispatch(getMovieCast(data.cast))
+        })
+    }
+}
+
+export const getRecommended = (recommended) => {
+    return {
+        type: 'GET_RECOMMENDED',
+        recommended
+    }
+}
+
+export const startGetRecommended = (id) => {
+    return (dispatch) => {
+        fetch(`https://api.themoviedb.org/3/movie/${id}/recommendations?api_key=${key}&language=en-US&page=1`)
+        .then((response) => {
+            return response.json()
+        })
+        .then((data) => {
+            dispatch(getRecommended(data.results))
+        })
     }
 }
 

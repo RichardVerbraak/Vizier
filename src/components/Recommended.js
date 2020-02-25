@@ -2,23 +2,26 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 
 import { connect } from 'react-redux'
-import { startGetMovies, isLoading } from '../actions/movies'
+import { startGetRecommended, isLoading } from '../actions/movies'
+import Category from './Category'
 
 
-class Movies extends React.Component {
+class Recommended extends React.Component {
 
-    componentDidMount() {        
-        this.props.getMovies()
+    componentDidMount() {
+        this.props.getRecommended(this.props.id)
     }    
 
     render() {
 
         return (
+            <>
+            <Category title={'Recommended'}></Category>
             <div className="movies">
                 {   
-                    this.props.movies.map((movie) => {
+                    this.props.recommended.map((movie) => {
                         return (
-                            <Link key={movie.id} to={`movie/${movie.id}`} className="movies__item">
+                            <Link key={movie.id} to={`${movie.id}`} className="movies__item">
                                 <img
                                     key={movie.id}
                                     src={`https://image.tmdb.org/t/p/w342${movie.poster_path}`} 
@@ -31,25 +34,23 @@ class Movies extends React.Component {
                     })
                 }
             </div>
+            </>
         )
     }
 }
 
 const mapStateToProps = (state) => {
     return {
-        movies: state.movies,
-        isLoading: state.isLoading
+        recommended: state.recommended
     }
 }
 
-// 'Connect' the action to the component so it can be dispatched
 const mapDispatchToProps = (dispatch) => {
     return {
-        getMovies: () => dispatch(startGetMovies()),
-        isLoading: () => dispatch(isLoading())
+        getRecommended: (id) => dispatch(startGetRecommended(id))
     }
 }
 
-const ConnectedMovies = connect(mapStateToProps, mapDispatchToProps)(Movies)
+const ConnectedRecommended = connect(mapStateToProps, mapDispatchToProps)(Recommended)
 
-export default ConnectedMovies
+export default ConnectedRecommended

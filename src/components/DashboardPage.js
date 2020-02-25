@@ -11,7 +11,7 @@ class DashboardPage extends React.Component {
             <>    
             <Navigation></Navigation>   
             <div className="container">
-                <Category></Category>
+                <Category title={'Movies'}></Category>
                 <Movies></Movies>
                 <Footer></Footer>
             </div>
