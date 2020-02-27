@@ -9,15 +9,15 @@ const getMovies = (movies) => {
 
 // Get movies is a function that has access to dispatch thanks to thunk
 // It first fetches the data and converts it to json, the dispatches the useable data to the reducer who will change the state
-export const startGetMovies = () => { 
-    return (dispatch) => {
+export const startGetMovies = () => {
+    return (dispatch) => {         
         fetch(`https://api.themoviedb.org/3/movie/popular?api_key=${key}&language=en-US&page=1`)
         .then((response) => {
             return response.json()
         })
         .then((data) => {
             dispatch(getMovies(data.results))
-            dispatch(isLoading())
+            dispatch(isLoading())            
         })
     }
 }
@@ -46,6 +46,7 @@ export const startGetMovieDetails = (id) => {
         })
         .then((data) => {
             dispatch(getMovieDetails(data))
+            // dispatch(isLoading())
         })
     }
 }
@@ -65,6 +66,7 @@ export const startGetMovieCast = (id) => {
         })
         .then((data) => {
             dispatch(getMovieCast(data.cast))
+            // dispatch(isLoading())
         })
     }
 }

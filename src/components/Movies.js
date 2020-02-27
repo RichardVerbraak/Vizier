@@ -8,7 +8,7 @@ import { startGetMovies, isLoading } from '../actions/movies'
 class Movies extends React.Component {
 
     componentDidMount() {        
-        this.props.getMovies()
+        this.props.getMovies(this.props)
     }    
 
     render() {

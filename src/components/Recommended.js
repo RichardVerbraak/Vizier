@@ -2,26 +2,25 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 
 import { connect } from 'react-redux'
-import { startGetRecommended, isLoading } from '../actions/movies'
+import { startGetRecommended } from '../actions/movies'
 import Category from './Category'
 
 
 class Recommended extends React.Component {
 
-    componentDidMount() {
-        this.props.getRecommended(this.props.id)
-    }    
+    // componentDidMount() {
+    //     this.props.getRecommended(this.props.id)
+    // }
 
     render() {
-
         return (
             <>
             <Category title={'Recommended'}></Category>
-            <div className="movies">
+            <div className="movies">            
                 {   
                     this.props.recommended.map((movie) => {
                         return (
-                            <Link key={movie.id} to={`${movie.id}`} className="movies__item">
+                            <Link key={movie.id} to={`${movie.id}`}  className="movies__item">
                                 <img
                                     key={movie.id}
                                     src={`https://image.tmdb.org/t/p/w342${movie.poster_path}`} 

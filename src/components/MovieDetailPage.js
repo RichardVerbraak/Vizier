@@ -1,7 +1,6 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 import { connect } from 'react-redux'
-
-import {startGetMovieDetails, startGetMovieCast, isLoading} from '../actions/movies'
+import {startGetMovieDetails, startGetMovieCast, startGetRecommended} from '../actions/movies'
 import test from '../ph-rami.jpg'
 
 import Navigation from './Navigation'
@@ -16,24 +15,30 @@ import Footer from './Footer'
 // Add svg icons in the buttons 
 
 // FORMAT THIS
-
+// Maybe do it like the EditExpensePage ine xpensify
 class MovieDetailPage extends React.Component {
-    
+        
+
+    // Fetch movies and cast based on the ID in the url
+    // Considerably faster when fetching recommended data in here?
     componentDidMount() {
+        console.log('mounted', this.props)
         this.props.getMovieDetails(this.props.match.params.id)
         this.props.getMovieCast(this.props.match.params.id)
+        this.props.getRecommended(this.props.match.params.id)        
     }
 
     render() {
-        
+        console.log('Rendered')
         return (
             <>
                 <Navigation></Navigation>                
                 <div className="container">
                 
+                
                     <div className="movie">
 
-                        <img className="movie__img" src={`https://image.tmdb.org/t/p/w500${this.props.details.poster_path}`}></img>
+                        <img className="movie__img" src={`https://image.tmdb.org/t/p/w500${this.props.details.poster_path}`} alt={`A poster of ${this.props.details.title}`}></img>
                         <div className="movie__content">
 
                             <div className="movie__heading">
@@ -76,9 +81,10 @@ class MovieDetailPage extends React.Component {
 
                         </div>
                     </div>
-                }                 
+                
+                                 
                               
-                    <Recommended id={this.props.match.params.id}></Recommended>
+                    <Recommended id={this.props.match.params.id} path={this.props.match.path}></Recommended>
                     <Footer></Footer>
                 </div>
             </>        
@@ -96,7 +102,8 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         getMovieDetails: (id) => dispatch(startGetMovieDetails(id)),
-        getMovieCast: (id) => dispatch(startGetMovieCast(id))
+        getMovieCast: (id) => dispatch(startGetMovieCast(id)),
+        getRecommended: (id) => dispatch(startGetRecommended(id))
     }
 }
 

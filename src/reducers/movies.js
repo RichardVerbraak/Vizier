@@ -24,8 +24,7 @@ const movieReducer = (state = initialState, action) => {
                 ...state,
                 cast: action.cast
             }
-        case 'GET_RECOMMENDED': 
-            console.log('yessss')
+        case 'GET_RECOMMENDED':
             return {
                 ...state,
                 recommended: action.recommended
