@@ -19,7 +19,7 @@
 
     &__content {
         display: grid;
-        grid-template-rows: repeat(3, min-content);
+        grid-template-rows: min-content;
         row-gap: 3rem;
     }
 
@@ -84,14 +84,22 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
-        width: 70%;
+
+        // Need overflow hidden for the slick track (otherwise it's width would be 30k+ pixels wide)
+        width: 75%;
+        overflow: hidden;
 
         &--img {
             display: block;
             width: 12rem;
             height: 14rem;
             object-fit: cover;
-            box-shadow: $box-shadow;      
+            box-shadow: $box-shadow;   
+            margin-right: 2rem;   
+        }
+
+        &--box {
+            display: flex;
         }
     }
 
@@ -104,4 +112,15 @@
     }
     
 
+}
+
+.slick-slider {
+    display: flex;
+    width: 100%;
+}
+
+.slick-list {
+    padding: 0 !important;
+    margin: 0;
+    overflow: hidden;
 }

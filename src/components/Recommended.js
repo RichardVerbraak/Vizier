@@ -44,12 +44,12 @@ const mapStateToProps = (state) => {
     }
 }
 
-const mapDispatchToProps = (dispatch) => {
-    return {
-        getRecommended: (id) => dispatch(startGetRecommended(id))
-    }
-}
+// const mapDispatchToProps = (dispatch) => {
+//     return {
+//         getRecommended: (id) => dispatch(startGetRecommended(id))
+//     }
+// }
 
-const ConnectedRecommended = connect(mapStateToProps, mapDispatchToProps)(Recommended)
+const ConnectedRecommended = connect(mapStateToProps)(Recommended)
 
 export default ConnectedRecommended

@@ -1,9 +1,8 @@
-import React, {useEffect} from 'react'
+import React from 'react'
 import { connect } from 'react-redux'
 import {startGetMovieDetails, startGetMovieCast, startGetRecommended} from '../actions/movies'
-import test from '../ph-rami.jpg'
-
 import Navigation from './Navigation'
+import CastSlider from './CastSlider'
 import Recommended from './Recommended'
 import Footer from './Footer'
 
@@ -15,9 +14,7 @@ import Footer from './Footer'
 // Add svg icons in the buttons 
 
 // FORMAT THIS
-// Maybe do it like the EditExpensePage ine xpensify
-class MovieDetailPage extends React.Component {
-        
+class MovieDetailPage extends React.Component {        
 
     // Fetch movies and cast based on the ID in the url
     // Considerably faster when fetching recommended data in here?
@@ -59,19 +56,10 @@ class MovieDetailPage extends React.Component {
                             </div>
 
                             <div className="movie__cast">
-                                <a>
-                                    <img className="movie__cast--img" src={this.props.cast.length === 0 ? test : `https://image.tmdb.org/t/p/w185/${this.props.cast[0].profile_path}`}></img>
-                                </a>
-                                <a>
-                                    <img className="movie__cast--img" src={test}></img>
-                                </a>
-                                <a>
-                                    <img className="movie__cast--img" src={test}></img>
-                                </a>
-                                <a>
-                                    <img className="movie__cast--img" src={test}></img>
-                                </a>
+                                <CastSlider></CastSlider>
                             </div>
+
+                            
                             
                             <div className="movie__links">
                                 <a className="movie__links--watchlist btn btn__watchlist">Add to watchlist</a>
