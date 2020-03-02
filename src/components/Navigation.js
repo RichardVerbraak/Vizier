@@ -9,7 +9,7 @@ export default class Navigation extends React.Component {
     render() {
         return (
             <div className="navigation">
-                <Link to="/" className="logo__box">
+                <Link to="/discover/Popular" className="logo__box">
                     <div className="logo">Vizier</div>
                 </Link>                
                 <form action="#" className="navigation__search">

@@ -6,12 +6,14 @@ import Movies from './Movies'
 import Footer from './Footer'
 
 class DashboardPage extends React.Component {
+    
     render() {
-        return (
-            <>    
+        return (            
+            <>
+            {console.log(this.props)}    
             <Navigation></Navigation>   
             <div className="container">
-                <Category title={'Movies'}></Category>
+                <Category title={'Popular'} sub={'Movies'}></Category>
                 <Movies></Movies>
                 <Footer></Footer>
             </div>

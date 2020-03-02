@@ -7,7 +7,7 @@ import "slick-carousel/slick/slick-theme.css";
 // Important to set dots to false, caused some weird issues
 
 class CastSlider extends React.Component {
-    render() {
+    render() {        
         const settings = {
             dots: false,
             infinite: true,
@@ -17,18 +17,18 @@ class CastSlider extends React.Component {
             speed: 500,
             slidesToShow: 5,
             slidesToScroll: 1,
-          };
+          }
+
       return (
             <Slider {...settings}>
-                {console.log(this.props.cast)}
                 {this.props.cast.length === 0 ? <div>Loading...</div> : this.props.cast.map((cast) => {
                     return (
                         <a key={cast.id}>
                             <img key={cast.id} className="movie__cast--img" src={`https://image.tmdb.org/t/p/w185/${cast.profile_path}`} alt={`Photo of ${cast.name}`}></img>
                         </a> 
                     )
-                })  }
-                                        
+                    })  
+                }                                        
             </Slider>
       );
     }

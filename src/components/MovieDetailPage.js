@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import {startGetMovieDetails, startGetMovieCast, startGetRecommended} from '../actions/movies'
+import { startGetMovieDetails, startGetMovieCast, startGetRecommended } from '../actions/movies'
 import Navigation from './Navigation'
 import CastSlider from './CastSlider'
 import Recommended from './Recommended'
@@ -14,24 +14,21 @@ import Footer from './Footer'
 // Add svg icons in the buttons 
 
 // FORMAT THIS
-class MovieDetailPage extends React.Component {        
+class MovieDetailPage extends React.Component {      
 
     // Fetch movies and cast based on the ID in the url
     // Considerably faster when fetching recommended data in here?
     componentDidMount() {
-        console.log('mounted', this.props)
         this.props.getMovieDetails(this.props.match.params.id)
         this.props.getMovieCast(this.props.match.params.id)
         this.props.getRecommended(this.props.match.params.id)        
     }
 
     render() {
-        console.log('Rendered')
         return (
             <>
                 <Navigation></Navigation>                
-                <div className="container">
-                
+                <div className="container">               
                 
                     <div className="movie">
 

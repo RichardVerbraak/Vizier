@@ -1,5 +1,7 @@
 const key = process.env.REACT_APP_API_KEY
 
+// URL-ize all the actions based on the route
+
 const getMovies = (movies) => {
     return {
         type: 'GET_MOVIES',
@@ -7,11 +9,12 @@ const getMovies = (movies) => {
     }
 }
 
+// Add dynamic value for sorting by popularity etc. and for page
 // Get movies is a function that has access to dispatch thanks to thunk
 // It first fetches the data and converts it to json, the dispatches the useable data to the reducer who will change the state
-export const startGetMovies = () => {
+export const startGetMovies = (pageNum = 1) => {
     return (dispatch) => {         
-        fetch(`https://api.themoviedb.org/3/movie/popular?api_key=${key}&language=en-US&page=1`)
+        fetch(`https://api.themoviedb.org/3/discover/movie?api_key=${key}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=${pageNum}`)
         .then((response) => {
             return response.json()
         })
@@ -35,8 +38,6 @@ export const getMovieDetails = (details) => {
         details
     }
 }
-
-
 
 export const startGetMovieDetails = (id) => {
     return (dispatch) => {
@@ -89,6 +90,13 @@ export const startGetRecommended = (id) => {
         })
     }
 }
+
+// export const pageChange = (pageNum) => {
+//     return {
+//         type: 'PAGE_CHANGE',
+//         pageNum
+//     }
+// }
 
 // Show Movies
 // const ShowMovies = () => {

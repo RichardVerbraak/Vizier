@@ -8,7 +8,7 @@ import { startGetMovies, isLoading } from '../actions/movies'
 class Movies extends React.Component {
 
     componentDidMount() {        
-        this.props.getMovies(this.props)
+        this.props.getMovies(this.props.page)
     }    
 
     render() {
@@ -18,7 +18,7 @@ class Movies extends React.Component {
                 {   
                     this.props.movies.map((movie) => {
                         return (
-                            <Link key={movie.id} to={`movie/${movie.id}`} className="movies__item">
+                            <Link key={movie.id} to={`/movie/${movie.id}`} className="movies__item">
                                 <img
                                     key={movie.id}
                                     src={`https://image.tmdb.org/t/p/w342${movie.poster_path}`} 
@@ -38,6 +38,7 @@ class Movies extends React.Component {
 const mapStateToProps = (state) => {
     return {
         movies: state.movies,
+        page: state.page,
         isLoading: state.isLoading
     }
 }
@@ -45,7 +46,7 @@ const mapStateToProps = (state) => {
 // 'Connect' the action to the component so it can be dispatched
 const mapDispatchToProps = (dispatch) => {
     return {
-        getMovies: () => dispatch(startGetMovies()),
+        getMovies: (pageNum) => dispatch(startGetMovies(pageNum)),
         isLoading: () => dispatch(isLoading())
     }
 }

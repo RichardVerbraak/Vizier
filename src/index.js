@@ -2,14 +2,14 @@ import React from "react";
 import ReactDOM from "react-dom";
 import { Provider } from 'react-redux'
 import store from './store/store'
-import Vizier from "./Vizier";
+import AppRouter from './routers/AppRouter'
 import './styles/styles.scss';
 import * as serviceWorker from "./serviceWorker";
 
 
 ReactDOM.render (
     <Provider store={store}>
-        <Vizier />
+        <AppRouter />
     </Provider>
     , 
     document.getElementById("root")
