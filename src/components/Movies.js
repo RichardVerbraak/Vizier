@@ -1,19 +1,18 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-
 import { connect } from 'react-redux'
 import { startGetMovies, isLoading } from '../actions/movies'
 
-
-class Movies extends React.Component {
-
-    componentDidMount() {        
-        this.props.getMovies(this.props.page)
+class Movies extends React.Component {    
+    
+    componentDidMount() {
+        const queryString = require('query-string')
+        const parsed = queryString.parse(this.props.location.search)   
+        this.props.getMovies(parsed.page)
     }    
 
     render() {
-
-        return (
+        return (            
             <div className="movies">
                 {   
                     this.props.movies.map((movie) => {

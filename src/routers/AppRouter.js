@@ -1,7 +1,8 @@
 import React from 'react';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
+import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom'
 import DashboardPage from '../components/DashboardPage'
 import MovieDetailPage from '../components/MovieDetailPage'
+import Movies from '../components/Movies'
 import WatchlistPage from '../components/WatchlistPage'
 import LoginPage from '../components/LoginPage'
 
@@ -20,7 +21,11 @@ export default class AppRouter extends React.Component {
         return (
             <Router>
                 <Switch>
-                    <Route exact={true} path="/discover/Popular" component={DashboardPage}/>
+                    <Redirect exact from="/" to="/discover/Popular" />
+                    <Route 
+                        path="/discover/Popular" 
+                        component={DashboardPage}
+                    />
                     <Route
                         exact={true} 
                         path="/movie/:id" 
@@ -29,8 +34,7 @@ export default class AppRouter extends React.Component {
                         )}
                     />
                     <Route path="/watchlist" component={WatchlistPage}/>
-                    <Route path="/login" component={LoginPage}/>
-                    
+                    <Route path="/login" component={LoginPage}/>                    
                 </Switch>               
             </Router>
         )

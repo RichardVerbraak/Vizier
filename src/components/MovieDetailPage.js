@@ -54,9 +54,7 @@ class MovieDetailPage extends React.Component {
 
                             <div className="movie__cast">
                                 <CastSlider></CastSlider>
-                            </div>
-
-                            
+                            </div>                            
                             
                             <div className="movie__links">
                                 <a className="movie__links--watchlist btn btn__watchlist">Add to watchlist</a>

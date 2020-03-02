@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 export default class Footer extends React.Component {
     
@@ -8,13 +9,13 @@ export default class Footer extends React.Component {
     // }
 
     render() {
-        return (
+        return (            
             <div className="footer">
                 <ul className="footer__nav">
                     <li className="footer__nav-item">The Movie DB</li>
                     <li className="footer__nav-item">&copy; | 2020 Richard Verbraak</li>
                     <li className="footer__nav-item">
-                        <a className="btn btn__sign-in">Page 2</a>
+                        <Link to="?page=2" className="btn btn__sign-in">Page 2</Link>
                     </li>
                 </ul>
             </div>
