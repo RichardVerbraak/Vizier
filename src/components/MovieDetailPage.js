@@ -14,8 +14,8 @@ import Footer from './Footer'
 // Add svg icons in the buttons 
 
 // FORMAT THIS
-class MovieDetailPage extends React.Component {      
-
+class MovieDetailPage extends React.Component {
+    
     // Fetch movies and cast based on the ID in the url
     // Considerably faster when fetching recommended data in here?
     componentDidMount() {
@@ -25,6 +25,7 @@ class MovieDetailPage extends React.Component {
     }
 
     render() {
+        console.log(this.props)
         return (
             <>
                 <Navigation></Navigation>                
@@ -63,12 +64,10 @@ class MovieDetailPage extends React.Component {
                             </div>
 
                         </div>
-                    </div>
-                
-                                 
+                    </div>                                
                               
                     <Recommended id={this.props.match.params.id} path={this.props.match.path}></Recommended>
-                    <Footer></Footer>
+                    <Footer id={this.props.match.params.id} page={this.props.page}></Footer>
                 </div>
             </>        
         )
@@ -78,7 +77,8 @@ class MovieDetailPage extends React.Component {
 const mapStateToProps = (state) => {
     return {
         details: state.details,
-        cast: state.cast
+        cast: state.cast,
+        page: state.page
     }
 }
 

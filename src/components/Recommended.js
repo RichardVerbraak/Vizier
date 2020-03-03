@@ -2,17 +2,12 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 
 import { connect } from 'react-redux'
-import { startGetRecommended } from '../actions/movies'
 import Category from './Category'
 
 
 class Recommended extends React.Component {
 
-    // componentDidMount() {
-    //     this.props.getRecommended(this.props.id)
-    // }
-
-    render() {
+     render() {
         return (
             <>
             <Category title={'Recommended'}></Category>
@@ -43,12 +38,6 @@ const mapStateToProps = (state) => {
         recommended: state.recommended
     }
 }
-
-// const mapDispatchToProps = (dispatch) => {
-//     return {
-//         getRecommended: (id) => dispatch(startGetRecommended(id))
-//     }
-// }
 
 const ConnectedRecommended = connect(mapStateToProps)(Recommended)
 

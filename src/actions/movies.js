@@ -91,26 +91,12 @@ export const startGetRecommended = (id) => {
     }
 }
 
-// export const pageChange = (pageNum) => {
-//     return {
-//         type: 'PAGE_CHANGE',
-//         pageNum
-//     }
-// }
-
-// Show Movies
-// const ShowMovies = () => {
-//     return {
-//         type: SHOW_MOVIES,        
-//     }
-// }
-
-// // Filter by TV Shows
-// const ShowTV = () => {
-//     return {
-//         type: SHOW_TV,
-//     }
-// }
+export const pageChange = (pageNum) => {
+    return {
+        type: 'PAGE_CHANGE',
+        pageNum
+    }
+}
 
 // Filter by genre regardless if its movies or TV Shows
 

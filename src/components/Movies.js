@@ -3,6 +3,11 @@ import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { startGetMovies, isLoading } from '../actions/movies'
 
+// Used a route for Movies that is being rendered inside the Dashboard component
+// Now Movies has access to the current URL
+
+// Change later so it also listens for either popular movies or tv shows
+
 class Movies extends React.Component {    
     
     componentDidMount() {

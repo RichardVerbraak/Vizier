@@ -1,9 +1,8 @@
 import React from 'react'
-import {withRouter, Route} from 'react-router-dom'
-
+import { Route } from 'react-router-dom'
 import Navigation from './Navigation'
 import Category from './Category'
-import Movies from './Movies'
+import MovieList from './MovieList'
 import Footer from './Footer'
 
 // Probably not the best way to pass props down like this, refactor if possible
@@ -16,8 +15,8 @@ class DashboardPage extends React.Component {
             <Navigation></Navigation>   
             <div className="container">
                 <Category></Category>
-                <Route key={this.props.location.search} component={Movies}/>
-                <Footer></Footer>
+                <Route key={this.props.location.search} component={MovieList}/>
+                <Route key={this.props} component={Footer}></Route>
             </div>
             </>
         )

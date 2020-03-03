@@ -1,13 +1,10 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import {connect} from 'react-redux'
+import {pageChange} from '../actions/movies'
 
-export default class Footer extends React.Component {
+export class Footer extends React.Component {      
     
-    // onClick = () => {
-    //     this.props.pageChange(2)
-    //     console.log(2)
-    // }
-
     render() {
         return (            
             <div className="footer">
@@ -15,7 +12,7 @@ export default class Footer extends React.Component {
                     <li className="footer__nav-item">The Movie DB</li>
                     <li className="footer__nav-item">&copy; | 2020 Richard Verbraak</li>
                     <li className="footer__nav-item">
-                        <Link to="?page=2" className="btn btn__sign-in">Page 2</Link>
+                        <Link to='?page=2' className="btn btn__sign-in">Page 2</Link>
                     </li>
                 </ul>
             </div>
@@ -23,12 +20,12 @@ export default class Footer extends React.Component {
     }
 }
 
-// const mapDispatchToProps = (dispatch) => {
-//     return {
-//         pageChange: (pageNum) => dispatch(pageChange(pageNum))
-//     }
-// }
+const mapDispatchToProps = (dispatch) => {
+    return {
+        pageChange: (pageNum) => dispatch(pageChange(pageNum))
+    }
+}
 
-// const ConnectedFooter = connect(undefined, mapDispatchToProps)(Footer)
+const ConnectedFooter = connect(undefined, mapDispatchToProps)(Footer)
 
-// export default ConnectedFooter
+export default ConnectedFooter
