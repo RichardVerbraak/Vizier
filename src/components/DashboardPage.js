@@ -12,7 +12,7 @@ class DashboardPage extends React.Component {
     render() {
         return (            
             <>   
-            <Navigation></Navigation>   
+            <Navigation/>   
             <div className="container">
                 <Category></Category>
                 <Route key={this.props.location.search} component={MovieList}/>

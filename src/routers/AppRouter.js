@@ -15,19 +15,19 @@ import LoginPage from '../components/LoginPage'
 const AppRouter = () => {    
         return (
             <Router>
-                    <Switch>
-                        <Redirect exact from="/" to="/discover/Popular" />
-                        <Route path="/discover/Popular" component={DashboardPage}/>
-                        <Route
-                            exact={true} 
-                            path="/movie/:id" 
-                            render={(props) => (
-                                <MovieDetailPage key={props.match.params.id} {...props} />
-                            )}
-                        />
-                        <Route path="/watchlist" component={WatchlistPage}/>
-                        <Route path="/login" component={LoginPage}/>                    
-                    </Switch>            
+                <Switch>
+                    <Redirect exact from="/" to="/discover/Popular" />
+                    <Route path="/discover/Popular" component={DashboardPage}/>
+                    <Route
+                        exact={true} 
+                        path="/movie/:id" 
+                        render={(props) => (
+                            <MovieDetailPage key={props.match.params.id} {...props} />
+                        )}
+                    />
+                    <Route path="/watchlist" component={WatchlistPage}/>
+                    <Route path="/login" component={LoginPage}/>                    
+                </Switch>            
             </Router>
             
         )    

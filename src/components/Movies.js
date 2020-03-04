@@ -8,9 +8,9 @@ import { Link } from 'react-router-dom'
 
 const Movies = (props) => {
     return (
-        <div className="movies">
+        <>
             {
-                props.movies.map((movie) => {
+            	props.movies.map((movie) => {
                     return (
                         <Link
                             key={movie.id}
@@ -27,7 +27,7 @@ const Movies = (props) => {
                     )
                 })
             }
-        </div>
+        </>
     )
 }
 
