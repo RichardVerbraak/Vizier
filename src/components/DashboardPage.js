@@ -14,7 +14,7 @@ class DashboardPage extends React.Component {
             <>   
             <Navigation/>   
             <div className="container">
-                <Category></Category>
+                <Category title={'Popular'}></Category>
                 <Route key={this.props.location.search} component={MovieList}/>
                 <Route key={this.props} component={Footer}></Route>
             </div>

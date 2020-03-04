@@ -16,8 +16,8 @@ const AppRouter = () => {
         return (
             <Router>
                 <Switch>
-                    <Redirect exact from="/" to="/discover/Popular" />
-                    <Route path="/discover/Popular" component={DashboardPage}/>
+                    <Redirect exact from="/" to="/discover/popular/movies" />
+                    <Route path="/discover/popular/movies" component={DashboardPage}/>
                     <Route
                         exact={true} 
                         path="/movie/:id" 

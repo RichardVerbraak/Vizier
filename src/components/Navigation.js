@@ -9,7 +9,7 @@ export default class Navigation extends React.Component {
     render() {
         return (
             <div className="navigation">
-                <Link to="/discover/Popular" className="logo__box">
+                <Link to="/discover/popular/movies" className="logo__box">
                     <div className="logo">Vizier</div>
                 </Link>                
                 <form action="#" className="navigation__search">
@@ -17,9 +17,9 @@ export default class Navigation extends React.Component {
                 </form>
 
                 <div className="navigation__items">
-                    <a href="#" className="navigation__items-box">
+                    <Link to="/discover/popular/movies" className="navigation__items-box">
                         <p className="navigation__items--item navigation__items--item-1">Movies</p>
-                    </a>
+                    </Link>
 
                     <a href="#" className="navigation__items-box">
                         <p className="navigation__items--item navigation__items--item-1">Tv Shows</p>

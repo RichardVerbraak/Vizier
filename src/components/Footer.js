@@ -4,10 +4,17 @@ import {connect} from 'react-redux'
 import {pageChange} from '../actions/movies'
 
 export class Footer extends React.Component {
+    state = {
+        page: 1
+    }
 
     onClick = () => {
-        this.props.history.push(`?page=${this.props.page + 1}`)
-        pageChange(this.props.page)        
+        this.props.history.push(`?page=${this.state.page + 1}`)
+        this.setState(() => {
+            return {
+                page: this.state.page + 1
+            }
+        })    
     }
 
     render() {
@@ -18,7 +25,7 @@ export class Footer extends React.Component {
                     <li className="footer__nav-item">The Movie DB</li>
                     <li className="footer__nav-item">&copy; | 2020 Richard Verbraak</li>
                     <li className="footer__nav-item">
-                        <Link to='?page=2' className="btn btn__sign-in">Page {this.props.page + 1}</Link>
+                        <a onClick={this.onClick} className="btn btn__sign-in">Page {this.state.page + 1}</a>
                     </li>
                 </ul>
             </div>
