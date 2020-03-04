@@ -12,12 +12,12 @@ class DashboardPage extends React.Component {
     render() {
         return (            
             <>   
-            <Navigation/>   
-            <div className="container">
-                <Category title={'Popular'}></Category>
-                <Route key={this.props.location.search} component={MovieList}/>
-                <Route key={this.props} component={Footer}></Route>
-            </div>
+                <Navigation/>   
+                <div className="container">
+                    <Category title={'Popular'}></Category>
+                    <Route key={this.props.location.search} component={MovieList}/>
+                    <Route key={this.props} component={Footer}></Route>
+                </div>
             </>
         )
     }   

@@ -79,13 +79,14 @@ export const getRecommended = (recommended) => {
     }
 }
 
-export const startGetRecommended = (id) => {
+export const startGetRecommended = (id, pageNum = 1) => {
     return (dispatch) => {
-        fetch(`https://api.themoviedb.org/3/movie/${id}/recommendations?api_key=${key}&language=en-US&page=1`)
+        fetch(`https://api.themoviedb.org/3/movie/${id}/recommendations?api_key=880bbec69207f7697602ce098c1da63e&language=en-US&page=${pageNum}`)
         .then((response) => {
             return response.json()
         })
         .then((data) => {
+            console.log(data.results)
             dispatch(getRecommended(data.results))
         })
     }

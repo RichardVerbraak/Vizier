@@ -5,6 +5,8 @@ import { startGetMovies, isLoading } from '../actions/movies'
 
 class MovieList extends React.Component {
     
+    // Parses the query string (?page=2) to only the number 2
+    // TODO: Move this back in the movies part and let this one only render?
     componentDidMount() {
         const queryString = require('query-string')
         const parsed = queryString.parse(this.props.location.search)   

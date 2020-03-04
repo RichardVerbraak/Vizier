@@ -1,15 +1,23 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import {connect} from 'react-redux'
+import {pageChange} from '../actions/movies' 
 
 // TODO: The search filter should be a component of its own
 // Maybe the sign in button as well
 
 
-export default class Navigation extends React.Component {
+class Navigation extends React.Component {
+
+    // Reset back to page 1 when logo is clicked
+    onClick = () => {
+        this.props.pageChange(1)
+    }
+    
     render() {
         return (
             <div className="navigation">
-                <Link to="/discover/popular/movies" className="logo__box">
+                <Link onClick={this.onClick} to="/discover/popular/movies" className="logo__box">
                     <div className="logo">Vizier</div>
                 </Link>                
                 <form action="#" className="navigation__search">
@@ -17,7 +25,7 @@ export default class Navigation extends React.Component {
                 </form>
 
                 <div className="navigation__items">
-                    <Link to="/discover/popular/movies" className="navigation__items-box">
+                    <Link onClick={this.onClick} to="/discover/popular/movies" className="navigation__items-box">
                         <p className="navigation__items--item navigation__items--item-1">Movies</p>
                     </Link>
 
@@ -34,3 +42,19 @@ export default class Navigation extends React.Component {
         )
     }
 }
+
+const mapStateToProps = (state) => {
+    return {
+        page: state.page
+    }
+}
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        pageChange: (pageNum) => dispatch(pageChange(pageNum))
+    }
+}
+
+const ConnectedNavigation = connect(mapStateToProps, mapDispatchToProps)(Navigation)
+
+export default ConnectedNavigation

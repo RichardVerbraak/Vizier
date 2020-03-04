@@ -83,3 +83,18 @@
 // const ConnectedRecommended = connect(mapStateToProps)(Recommended)
 
 // export default ConnectedRecommended
+
+
+
+/////!!!!!!!!!!!!!!!! MovieDetailPage
+
+// Fetch movies and cast based on the ID in the url
+    // Considerably faster when fetching recommended data in here?
+    // componentDidMount() {        
+    //     const queryString = require('query-string')
+    //     const parsed = queryString.parse(this.props.location.search)        
+        
+    //     this.props.getMovieDetails(this.props.match.params.id)
+    //     this.props.getMovieCast(this.props.match.params.id)
+    //     this.props.getRecommended(this.props.match.params.id, parsed.page)  
+    // }

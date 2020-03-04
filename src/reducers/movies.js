@@ -38,7 +38,7 @@ const movieReducer = (state = initialState, action) => {
         case 'PAGE_CHANGE':
             return {
                 ...state,
-                page: action.pageNum + 1
+                page: action.pageNum
             }
         default:
             return state
