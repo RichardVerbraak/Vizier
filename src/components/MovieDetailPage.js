@@ -1,9 +1,11 @@
 import React from 'react'
+import {Route} from 'react-router-dom'
 import { connect } from 'react-redux'
 import { startGetMovieDetails, startGetMovieCast, startGetRecommended } from '../actions/movies'
+import Category from './Category'
 import Navigation from './Navigation'
 import Movie from './Movie'
-import Recommended from './Recommended'
+import MovieList from './MovieList'
 import Footer from './Footer'
 
 // Rename to movie page for different containers (grid?)
@@ -13,7 +15,6 @@ import Footer from './Footer'
 // Add genre in with jsx and a | after every genre
 // Add svg icons in the buttons 
 
-// FORMAT THIS
 class MovieDetailPage extends React.Component {
     
     // Fetch movies and cast based on the ID in the url
@@ -28,14 +29,12 @@ class MovieDetailPage extends React.Component {
         return (
             <>
                 <Navigation/>                
-                <div className="container">         
+                <div className="container">              
+                    <Movie details={this.props.details} />                                                   
                     
-                    <div className="movie">
-                        <Movie details={this.props.details} />                   
-                    </div>                                
-                              
-                    <Recommended id={this.props.match.params.id} path={this.props.match.path}/>
-                    <Footer id={this.props.match.params.id} page={this.props.page}/>
+                    <Category title={'Recommended'}/>
+                    <Route key={this.props.location.search} component={MovieList} movies={this.props.details}/>
+                    <Route key={this.props} component={Footer}></Route>
                 </div>
             </>        
         )
@@ -46,7 +45,8 @@ const mapStateToProps = (state) => {
     return {
         details: state.details,
         cast: state.cast,
-        page: state.page
+        page: state.page,
+        recommended: state.recommended
     }
 }
 

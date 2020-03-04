@@ -94,7 +94,7 @@ export const startGetRecommended = (id) => {
 export const pageChange = (pageNum) => {
     return {
         type: 'PAGE_CHANGE',
-        pageNum
+        pageNum: pageNum
     }
 }
 

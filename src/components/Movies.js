@@ -4,11 +4,14 @@ import { Link } from 'react-router-dom'
 // Used a route for Movies that is being rendered inside the Dashboard component
 // Now Movies has access to the current URL
 
+// Moved Movies container here so it would have the 5 way grid everywhere this component is used
+// Is now reused for Recommended as well
+
 // Change later so it also listens for either popular movies or tv shows
 
 const Movies = (props) => {
     return (
-        <>
+        <div className="movies"> 
             {
             	props.movies.map((movie) => {
                     return (
@@ -27,7 +30,7 @@ const Movies = (props) => {
                     )
                 })
             }
-        </>
+        </div>
     )
 }
 

@@ -3,7 +3,7 @@ import CastSlider from './CastSlider'
 
 const Movie = (props) => {
     return (
-        <>
+        <div className="movie">
             <img className="movie__img" src={`https://image.tmdb.org/t/p/w500${props.details.poster_path}`} alt={`A poster of ${props.details.title}`}></img>
             <div className="movie__content">
 
@@ -34,7 +34,7 @@ const Movie = (props) => {
                     <a className="movie__links--watchlist btn btn__trailer">Trailer</a>
                 </div>
             </div>
-        </>
+        </div>
     )
 }
 

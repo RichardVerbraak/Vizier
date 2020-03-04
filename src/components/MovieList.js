@@ -12,11 +12,8 @@ class MovieList extends React.Component {
     }
 
     render() {
-        console.log(this.props.movies)
-        return (
-            <div className="movies">                       
-                <Movies movies={this.props.movies} />
-            </div>             
+        return (                                  
+            <Movies movies={this.props.movies} />                      
         )
     }    
 }
