@@ -25,7 +25,7 @@ class MovieDetailPage extends React.Component {
                     <Route component={Movie}/>
                     <Category title={'Recommended'}/>
                     <Route key={this.props.location.search} component={RecommendedList}/>
-                    <Route key={this.props} component={Footer}/>
+                    <Route key={this.props.page} component={Footer}/>
                 </div>
             </>        
         )
@@ -34,7 +34,8 @@ class MovieDetailPage extends React.Component {
 
 const mapStateToProps = (state) => {
     return {
-        recommended: state.recommended
+        recommended: state.recommended,
+        page: state.page
     }
 }
 

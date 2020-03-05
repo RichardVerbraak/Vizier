@@ -8,8 +8,7 @@ class Movie extends React.Component {
     componentDidMount() {
         this.props.getMovieDetails(this.props.match.params.id)
         this.props.getMovieCast(this.props.match.params.id)
-    }
-        
+    }        
 
     render() {   
         return (

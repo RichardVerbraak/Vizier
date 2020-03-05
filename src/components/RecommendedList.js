@@ -7,7 +7,7 @@ import { startGetRecommended, isLoading } from '../actions/movies'
 
 class RecommendedList extends React.Component {
     
-    // Parses the query string (?page=2) to only the number 2
+    // Parses the query string (?page=2) to only the number 2 --> Fetch movies by page number    
     componentDidMount() {
         const queryString = require('query-string')
         const parsed = queryString.parse(this.props.location.search)       
