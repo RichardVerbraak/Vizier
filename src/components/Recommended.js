@@ -1,54 +1,42 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import {connect} from 'react-redux'
-import {pageChange} from '../actions/movies'
+
+// Convert to functional component
 
 class Recommended extends React.Component {
     
-    // Reset page when clicking recommended movie
-    onClick = () => {
-        this.props.pageChange(1)
-    }
-    
-    render() {    
-        return (
-            <div className="movies"> 
-                {
-                    this.props.recommended.map((movie) => {
-                        return (
-                            <Link
-                                key={movie.id}
-                                to={`/movie/${movie.id}`}
-                                className="movies__item"
-                                onClick={this.onClick}
-                            >
-                                <img
+    render() {      
+        if (this.props.recommended.length > 0) {        
+            return (                
+                <div className="movies">             
+                    {
+                        this.props.recommended.map((movie) => {
+                            return (
+                                <Link
                                     key={movie.id}
-                                    src={`https://image.tmdb.org/t/p/w342${movie.poster_path}`}
-                                    className="movies__item-img"
-                                    alt={`A poster of ${movie.title}`}
-                                ></img>
-                            </Link>
-                        )
-                    })
-                }
+                                    to={`/movie/${movie.id}`}
+                                    className="movies__item"
+                                    
+                                >
+                                    <img
+                                        key={movie.id}
+                                        src={`https://image.tmdb.org/t/p/w342${movie.poster_path}`}
+                                        className="movies__item-img"
+                                        alt={`A poster of ${movie.title}`}
+                                    ></img>
+                                </Link>
+                            )
+                        })
+                    }
+                </div>
+            )
+        }
+        return (
+            <div>
+                <h1>Nothing here!</h1>
             </div>
         )
     }
 }
 
-const mapStateToProps = (state) => {
-    return {
-        page: state.page
-    }
-}
-
-const mapDispatchToProps = (dispatch) => {
-    return {
-        pageChange: (pageNum) => dispatch(pageChange(pageNum))
-    }
-}
-
-const ConnectedRecommended = connect(mapStateToProps, mapDispatchToProps)(Recommended)
-
-export default ConnectedRecommended
+export default Recommended

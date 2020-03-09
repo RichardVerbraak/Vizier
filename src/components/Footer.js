@@ -1,51 +1,36 @@
 import React from 'react'
-import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
-import { pageChange } from '../actions/movies'
+import {connect} from 'react-redux'
 
 // Helpful Link https://stackoverflow.com/questions/48151696/undefined-in-variable-using-react-componentdidmount
 // TODO: Refactor
 
 export class Footer extends React.Component {
-    state = {
-        parsedPage: null
-    }
 
-    // Fetch page number in URL and parse it
-    // Set state instead of componentWillMount
-    componentDidMount() {
-        const queryString = require('query-string')
-        const parsedPage = queryString.parse(this.props.location.search).page
-        // const pageNumber = parseInt(parsedPage)
-        
-        this.setState(() => {
-            return {
-                parsedPage: parsedPage
-            }
-        })
-    }
-
-    // When Link is clicked, update state 
-    onClick = () => {
-        this.props.pageChange(this.props.page + 1)
-    }
-    
-    
     render() {
-        console.log(this.state.parsedPage)
         return (            
             <div className="footer">
                 <ul className="footer__nav">
-                    <li className="footer__nav-item">The Movie DB</li>
-                    <li className="footer__nav-item">&copy; | 2020 Richard Verbraak</li>
-                    <li className="footer__nav-item">
-                        <Link 
-                            to={`?page=${this.props.page + 1}`} 
-                            onClick={this.onClick} 
+                {this.props.currentPage > 1 && 
+                    <li className="footer__nav-item footer__nav-item--back">
+                        <Link
+                            to={`?page=${parseInt(this.props.currentPage) - 1}`}
                             className="btn btn__sign-in"
                         >
-                            Page {this.state.parsedPage ? parseInt(this.state.parsedPage) + 1 : 2}
-                        </Link>
+                            Page {parseInt(this.props.currentPage) - 1}
+                        </Link>                        
+                </li>
+                }
+                
+                    <li className="footer__nav-item footer__nav-item--movie">The Movie DB</li>
+                    <li className="footer__nav-item footer__nav-item--copy">&copy; | 2020 Richard Verbraak</li>
+                    <li className="footer__nav-item footer__nav-item--next">
+                        <Link
+                            to={`?page=${parseInt(this.props.currentPage) + 1}`}
+                            className="btn btn__sign-in"
+                        >
+                            Page {parseInt(this.props.currentPage) + 1}
+                        </Link>                        
                     </li>
                 </ul>
             </div>
@@ -53,18 +38,13 @@ export class Footer extends React.Component {
     }
 }
 
+
 const mapStateToProps = (state) => {
     return {
-        page: state.page
+        currentPage: state.currentPage
     }
 }
 
-const mapDispatchToProps = (dispatch) => {
-    return {
-        pageChange: (pageNum) => dispatch(pageChange(pageNum))
-    }
-}
-
-const ConnectedFooter = connect(mapStateToProps, mapDispatchToProps)(Footer)
+const ConnectedFooter= connect(mapStateToProps, undefined)(Footer)
 
 export default ConnectedFooter

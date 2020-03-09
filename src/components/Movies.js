@@ -1,6 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
+
 // Used a route for Movies that is being rendered inside the Dashboard component
 // Now Movies has access to the current URL
 
@@ -9,16 +10,17 @@ import { Link } from 'react-router-dom'
 
 // Change later so it also listens for either popular movies or tv shows
 
-const Movies = (props) => {
+const Movies = ({movies, resetPage}) => {
     return (
         <div className="movies"> 
             {
-            	props.movies.map((movie) => {
+            	movies.map((movie) => {
                     return (
                         <Link
                             key={movie.id}
                             to={`/movie/${movie.id}`}
                             className="movies__item"
+                            onClick={resetPage}
                         >
                             <img
                                 key={movie.id}

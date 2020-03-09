@@ -1,6 +1,6 @@
 const initialState = {
     movies: [],
-    page: 1,
+    currentPage: 1,
     details: [],
     cast: [],
     recommended: [],
@@ -35,10 +35,11 @@ const movieReducer = (state = initialState, action) => {
                 ...state,
                 isLoading: action.isLoading
             }
-        case 'PAGE_CHANGE':
+
+        case 'GET_PAGE':
             return {
                 ...state,
-                page: action.pageNum
+                currentPage: action.currentPage
             }
         default:
             return state

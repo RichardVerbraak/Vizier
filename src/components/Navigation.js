@@ -1,23 +1,19 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link, NavLink } from 'react-router-dom'
 import {connect} from 'react-redux'
-import {pageChange} from '../actions/movies' 
 
 // TODO: The search filter should be a component of its own
 // Maybe the sign in button as well
 
+// Link to /discover/Popular (interpolate the popular part)
+
 
 class Navigation extends React.Component {
 
-    // Reset back to page 1 when logo is clicked
-    onClick = () => {
-        this.props.pageChange(1)
-    }
-    
     render() {
         return (
             <div className="navigation">
-                <Link onClick={this.onClick} to="/discover/popular/movies" className="logo__box">
+                <Link to="/discover/Popular" className="logo__box">
                     <div className="logo">Vizier</div>
                 </Link>                
                 <form action="#" className="navigation__search">
@@ -25,13 +21,13 @@ class Navigation extends React.Component {
                 </form>
 
                 <div className="navigation__items">
-                    <Link onClick={this.onClick} to="/discover/popular/movies" className="navigation__items-box">
+                    <NavLink  to="/home" className="navigation__items-box" activeClassName="selected">
                         <p className="navigation__items--item navigation__items--item-1">Movies</p>
-                    </Link>
+                    </NavLink>
 
-                    <a href="#" className="navigation__items-box">
+                    <Link to="/discover/popular/tv" className="navigation__items-box">
                         <p className="navigation__items--item navigation__items--item-1">Tv Shows</p>
-                    </a>
+                    </Link>
 
                     <a href="#" className="navigation__items-box">
                         <p className="navigation__items--item navigation__items--item-1">Your List</p>
@@ -49,12 +45,6 @@ const mapStateToProps = (state) => {
     }
 }
 
-const mapDispatchToProps = (dispatch) => {
-    return {
-        pageChange: (pageNum) => dispatch(pageChange(pageNum))
-    }
-}
-
-const ConnectedNavigation = connect(mapStateToProps, mapDispatchToProps)(Navigation)
+const ConnectedNavigation = connect(mapStateToProps, undefined)(Navigation)
 
 export default ConnectedNavigation

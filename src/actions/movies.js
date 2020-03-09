@@ -47,7 +47,7 @@ export const startGetMovieDetails = (id) => {
         })
         .then((data) => {
             dispatch(getMovieDetails(data))
-            // dispatch(isLoading())
+            dispatch(isLoading())
         })
     }
 }
@@ -67,7 +67,7 @@ export const startGetMovieCast = (id) => {
         })
         .then((data) => {
             dispatch(getMovieCast(data.cast))
-            // dispatch(isLoading())
+            dispatch(isLoading())
         })
     }
 }
@@ -86,16 +86,16 @@ export const startGetRecommended = (id, pageNum = 1) => {
             return response.json()
         })
         .then((data) => {
-            console.log(data.results)
             dispatch(getRecommended(data.results))
+            dispatch(isLoading())
         })
     }
 }
 
-export const pageChange = (pageNum) => {
+export const getPage = (page = 1) => {
     return {
-        type: 'PAGE_CHANGE',
-        pageNum: pageNum
+        type: 'GET_PAGE',
+        currentPage: page
     }
 }
 

@@ -1,11 +1,10 @@
 import React from 'react'
-import {Route} from 'react-router-dom'
 import { connect } from 'react-redux'
-import { startGetMovieDetails, startGetMovieCast, startGetRecommended } from '../actions/movies'
-import Category from './Category'
+import { startGetMovieDetails, startGetMovieCast, startGetRecommended, getPage } from '../actions/movies'
 import Navigation from './Navigation'
+import Category from './Category'
 import Movie from './Movie'
-import RecommendedList from './RecommendedList'
+import Recommended from './Recommended'
 import Footer from './Footer'
 
 // Rename to movie page for different containers (grid?)
@@ -17,17 +16,43 @@ import Footer from './Footer'
 
 class MovieDetailPage extends React.Component {
 
+    componentDidMount() {
+        this.props.getMovieDetails(this.props.match.params.id)        
+        this.props.getMovieCast(this.props.match.params.id)
+        this.props.getRecommended(this.props.match.params.id)
+    }
+
+    componentDidUpdate(prevProps) {        
+
+        // To prevent infinite loop
+        // If the new URL does not match the old one --> Fetch data again
+        if(this.props.match.params.id !== prevProps.match.params.id || this.props.location.search !== prevProps.location.search) {
+            const queryString = require('query-string')
+            const parsed = queryString.parse(this.props.location.search).page
+
+            this.props.getMovieDetails(this.props.match.params.id)
+            this.props.getMovieCast(this.props.match.params.id)
+            this.props.getRecommended(this.props.match.params.id ,parsed)
+            this.props.getPage(parsed)
+        }
+    }
+
     render() {
-        return (
+        return (            
             <>
-                <Navigation/>                
+                <Navigation/>             
                 <div className="container">              
-                    <Route component={Movie}/>
-                    <Category title={'Recommended'}/>
-                    <Route key={this.props.location.search} component={RecommendedList}/>
-                    <Route key={this.props.page} component={Footer}/>
+                    {this.props.isLoading ? 
+                        <div>Loading...</div> :
+                        <>
+                            <Movie details={this.props.details}/>
+                            <Category title={'Recommended'}/>
+                            <Recommended recommended={this.props.recommended}/>                            
+                        </>
+                    }
+                    <Footer/>
                 </div>
-            </>        
+            </>      
         )
     }
 }
@@ -35,7 +60,10 @@ class MovieDetailPage extends React.Component {
 const mapStateToProps = (state) => {
     return {
         recommended: state.recommended,
-        page: state.page
+        page: state.page,
+        details: state.details,
+        cast: state.cast,
+        isLoading: state.isLoading
     }
 }
 
@@ -43,7 +71,8 @@ const mapDispatchToProps = (dispatch) => {
     return {
         getMovieDetails: (id) => dispatch(startGetMovieDetails(id)),
         getMovieCast: (id) => dispatch(startGetMovieCast(id)),
-        getRecommended: (id, pageNum) => dispatch(startGetRecommended(id, pageNum))
+        getRecommended: (id, pageNum) => dispatch(startGetRecommended(id, pageNum)),
+        getPage: (query) => dispatch(getPage(query))
     }
 }
 

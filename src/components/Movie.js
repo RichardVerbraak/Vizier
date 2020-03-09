@@ -1,16 +1,9 @@
 import React from 'react'
 import CastSlider from './CastSlider'
-import {connect} from 'react-redux'
-import { startGetMovieDetails, startGetMovieCast } from '../actions/movies'
 
 class Movie extends React.Component {
 
-    componentDidMount() {
-        this.props.getMovieDetails(this.props.match.params.id)
-        this.props.getMovieCast(this.props.match.params.id)
-    }        
-
-    render() {   
+    render() { 
         return (
             <div className="movie">
                 <img className="movie__img" src={`https://image.tmdb.org/t/p/w500${this.props.details.poster_path}`} alt={`A poster of ${this.props.details.title}`}></img>
@@ -48,20 +41,4 @@ class Movie extends React.Component {
     }
 }
 
-const mapStateToProps = (state) => {
-    return {
-        details: state.details,
-        cast: state.cast
-    }
-}
-
-const mapDispatchToProps = (dispatch) => {
-    return {
-        getMovieDetails: (id) => dispatch(startGetMovieDetails(id)),
-        getMovieCast: (id) => dispatch(startGetMovieCast(id))
-    }
-}
-
-const ConnectedMovie = connect(mapStateToProps, mapDispatchToProps)(Movie)
-
-export default ConnectedMovie
+export default Movie
