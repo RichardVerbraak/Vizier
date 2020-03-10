@@ -1,0 +1,83 @@
+import React from 'react'
+import {connect} from 'react-redux'
+
+import Navigation from './Navigation'
+import ShowList from './ShowList'
+import Footer from './Footer'
+import { startGetShows } from '../actions/tv'
+import { getPage } from '../actions/movies'
+
+// Somehow, fetch data from the Redux store and pass that down to the components
+// Pass handlers down to the Child components 
+
+// Maybe make a button that gets passed down in footer
+
+// Helpful https://stackoverflow.com/questions/40352310/how-do-you-mix-componentdidmount-with-react-redux-connect
+// https://codereview.stackexchange.com/questions/206902/react-container-component-to-fetch-paginated-data-for-a-stateless-table-componen
+
+class TelevisionPage extends React.Component {
+    
+    // If there is a search query --> parse the page number --> Fetch data based on the page number 
+    componentDidMount() {               
+        if (this.props.location.search) {
+            const queryString = require('query-string')
+            const parsed = queryString.parse(this.props.location.search).page
+
+            this.props.getShows(parsed)
+            this.props.getPage(parsed)
+        } else {
+            this.props.getShows()
+            this.props.getPage()
+        }        
+    }
+
+    // If the search query changed --> Fetch data
+    componentDidUpdate(prevProps) {           
+        if (this.props.location.search !== prevProps.location.search) {
+            const queryString = require('query-string')
+            const parsed = queryString.parse(this.props.location.search).page
+            
+
+            this.props.getShows(parsed)
+            this.props.getPage(parsed)
+            
+            console.log(parsed)
+        }        
+    }
+
+    // Passed down MovieList and then to Movies
+    resetPage = () => {
+        this.props.getPage()
+    }
+    
+    render() {
+        return (        
+            <>
+            <Navigation/>
+            <div className="container">
+                {this.props.isLoading ? <div>Loading...</div> : <ShowList resetPage={this.resetPage} shows={this.props.shows}/>}  
+                <Footer />
+            </div>
+            </>
+        )
+    }
+}
+
+const mapStateToProps = (state) => {
+    return {
+        shows: state.shows,
+        isLoading: state.isLoading,
+        currentPage: state.currentPage
+    }    
+}
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        getShows: (page) => dispatch(startGetShows(page)),
+        getPage: (query) => dispatch(getPage(query))
+    }
+}
+
+const ConnectedTelevisionPage = connect(mapStateToProps, mapDispatchToProps)(TelevisionPage)
+
+export default ConnectedTelevisionPage

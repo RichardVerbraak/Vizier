@@ -13,7 +13,7 @@ class Navigation extends React.Component {
     render() {
         return (
             <div className="navigation">
-                <Link to="/discover/Popular" className="logo__box">
+                <Link to="/discover/Popular/Movies" className="logo__box">
                     <div className="logo">Vizier</div>
                 </Link>                
                 <form action="#" className="navigation__search">
@@ -21,11 +21,11 @@ class Navigation extends React.Component {
                 </form>
 
                 <div className="navigation__items">
-                    <NavLink  to="/home" className="navigation__items-box" activeClassName="selected">
+                    <NavLink  to="/discover/Popular/Movies" className="navigation__items-box" activeClassName="selected">
                         <p className="navigation__items--item navigation__items--item-1">Movies</p>
                     </NavLink>
 
-                    <Link to="/discover/popular/tv" className="navigation__items-box">
+                    <Link to="/discover/Popular/TV" className="navigation__items-box">
                         <p className="navigation__items--item navigation__items--item-1">Tv Shows</p>
                     </Link>
 

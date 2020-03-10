@@ -1,5 +1,6 @@
 const initialState = {
     movies: [],
+    shows: [],
     currentPage: 1,
     details: [],
     cast: [],
@@ -16,7 +17,17 @@ const movieReducer = (state = initialState, action) => {
                 ...state,
                 movies: action.movies
             }
+        case 'GET_SHOWS':
+            return {
+                ...state,
+                shows: action.shows
+            }
         case 'GET_DETAILS':
+            return {
+                ...state,
+                details: action.details
+            }
+        case 'GET_SHOW_DETAILS':
             return {
                 ...state,
                 details: action.details
@@ -26,7 +37,17 @@ const movieReducer = (state = initialState, action) => {
                 ...state,
                 cast: action.cast
             }
+        case 'GET_SHOW_CAST':
+            return {
+                ...state,
+                cast: action.cast
+            }
         case 'GET_RECOMMENDED':
+            return {
+                ...state,
+                recommended: action.recommended
+            }
+        case 'GET_RECOMMENDED_SHOWS':
             return {
                 ...state,
                 recommended: action.recommended
@@ -36,7 +57,6 @@ const movieReducer = (state = initialState, action) => {
                 ...state,
                 isLoading: action.isLoading
             }
-
         case 'GET_PAGE':
             return {
                 ...state,
