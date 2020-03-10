@@ -4,7 +4,8 @@ const initialState = {
     details: [],
     cast: [],
     recommended: [],
-    isLoading: true
+    isLoading: true,
+    totalPages: 0
 }
 
 // Change the state to everthing we add + grab the movies data from the action and add it to our state
@@ -40,6 +41,11 @@ const movieReducer = (state = initialState, action) => {
             return {
                 ...state,
                 currentPage: action.currentPage
+            }
+        case 'GET_TOTAL_PAGES':
+            return {
+                ...state,
+                totalPages: action.totalPages
             }
         default:
             return state

@@ -16,16 +16,25 @@ import Footer from './Footer'
 
 class MovieDetailPage extends React.Component {
 
+    // If there is a search query --> parse the page number --> Fetch data based on the page number
     componentDidMount() {
-        this.props.getMovieDetails(this.props.match.params.id)        
-        this.props.getMovieCast(this.props.match.params.id)
-        this.props.getRecommended(this.props.match.params.id)
+        if (this.props.location.search) {
+            const queryString = require('query-string')
+            const parsed = queryString.parse(this.props.location.search).page
+
+            this.props.getRecommended(this.props.match.params.id ,parsed)
+            this.props.getPage(parsed)
+        } else {
+            this.props.getMovieDetails(this.props.match.params.id)        
+            this.props.getMovieCast(this.props.match.params.id)
+            this.props.getRecommended(this.props.match.params.id)
+        }        
     }
 
-    componentDidUpdate(prevProps) {        
-
-        // To prevent infinite loop
-        // If the new URL does not match the old one --> Fetch data again
+    // If statement to prevent infinite loop
+    // If the new URL does not match the old one --> Fetch data again
+    componentDidUpdate(prevProps) {
+        
         if(this.props.match.params.id !== prevProps.match.params.id || this.props.location.search !== prevProps.location.search) {
             const queryString = require('query-string')
             const parsed = queryString.parse(this.props.location.search).page

@@ -19,6 +19,7 @@ export const startGetMovies = (pageNum = 1) => {
             return response.json()
         })
         .then((data) => {
+            dispatch(getTotalPages(data.total_pages))
             dispatch(getMovies(data.results))
             dispatch(isLoading())            
         })
@@ -86,6 +87,7 @@ export const startGetRecommended = (id, pageNum = 1) => {
             return response.json()
         })
         .then((data) => {
+            dispatch(getTotalPages(data.total_pages))
             dispatch(getRecommended(data.results))
             dispatch(isLoading())
         })
@@ -96,6 +98,13 @@ export const getPage = (page = 1) => {
     return {
         type: 'GET_PAGE',
         currentPage: page
+    }
+}
+
+export const getTotalPages = (totalPages) => {
+    return {
+        type: 'GET_TOTAL_PAGES',
+        totalPages
     }
 }
 
