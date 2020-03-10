@@ -5,6 +5,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
 // Important to set dots to false, caused some weird issues
+// slidesToShow set to 4 instead of 5, if there were only 4 cast members, the slider would collapse
 
 class CastSlider extends React.Component {
     render() {        
@@ -15,7 +16,7 @@ class CastSlider extends React.Component {
             autoplaySpeed: 4000,
             swipeToSlide: true,
             speed: 500,
-            slidesToShow: 5,
+            slidesToShow: 4,
             slidesToScroll: 1,
           }
 

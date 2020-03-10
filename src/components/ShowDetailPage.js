@@ -4,7 +4,7 @@ import { getPage } from '../actions/movies'
 import { startGetShowDetails, startGetRecommendedShows, startGetShowCast } from '../actions/tv'
 import Navigation from './Navigation'
 import Category from './Category'
-import Movie from './Movie'
+import Show from './Show'
 import RecommendedShows from './RecommendedShows'
 import Footer from './Footer'
 
@@ -55,7 +55,7 @@ class ShowDetailPage extends React.Component {
                     {this.props.isLoading ? 
                         <div>Loading...</div> :
                         <>
-                            <Movie details={this.props.details}/>
+                            <Show details={this.props.details}/>
                             <Category title={'Recommended'}/>
                             <RecommendedShows recommended={this.props.recommended}/>                            
                         </>
