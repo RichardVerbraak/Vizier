@@ -53,21 +53,21 @@ class HomePage extends React.Component {
     render() {
         return (        
             <>
-            <Navigation/>
-            {this.props.isLoading ? 
-                <div className="loader">
-                    <ClipLoader                    
-                        size={150}
-                        color={"#D72525"}
-                        loading={!!this.props.isLoading}
-                    />
-                </div> 
-                :
-                <div className="container">
-                    <MovieList isLoading={this.props.isLoading} resetPage={this.resetPage} movies={this.props.movies}/>  
-                    <Footer />
-                </div>
-            }                        
+                <Navigation/>
+                {this.props.isLoading ? 
+                    <div className="loader">
+                        <ClipLoader                    
+                            size={150}
+                            color={"#D72525"}
+                            loading={!!this.props.isLoading}
+                        />
+                    </div> 
+                    :
+                    <div className="container">
+                        <MovieList isLoading={this.props.isLoading} resetPage={this.resetPage} movies={this.props.movies}/>  
+                        <Footer />
+                    </div>
+                }                        
             </>           
         )
     }

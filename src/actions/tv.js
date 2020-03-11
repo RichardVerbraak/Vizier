@@ -1,5 +1,5 @@
 import {getTotalPages} from './movies'
-import {isLoading} from './movies'
+import {isLoading, loading} from './movies'
 
 const key = process.env.REACT_APP_API_KEY
 
@@ -15,8 +15,9 @@ const getShows = (shows) => {
 // Add dynamic value for sorting by popularity etc. and for page
 // Get movies is a function that has access to dispatch thanks to thunk
 // It first fetches the data and converts it to json, the dispatches the useable data to the reducer who will change the state
-export const startGetShows = (pageNum = 1) => {
-    return (dispatch) => {         
+export const startGetShows = (pageNum = 1) => {    
+    return (dispatch) => {
+        dispatch(loading())         
         fetch(`https://api.themoviedb.org/3/discover/tv?api_key=${key}&language=en-US&sort_by=popularity.desc&page=${pageNum}&include_null_first_air_dates=false`)
         .then((response) => {
             return response.json()
@@ -38,6 +39,7 @@ export const getShowDetails = (details) => {
 
 export const startGetShowDetails = (id) => {
     return (dispatch) => {
+        dispatch(loading())
         fetch(`https://api.themoviedb.org/3/tv/${id}?api_key=${key}&language=en-US`)
         .then((response) => {
             return response.json()
@@ -58,6 +60,7 @@ export const getShowCast = (cast) => {
 
 export const startGetShowCast = (id) => {
     return (dispatch) => {
+        dispatch(loading())
         fetch(`https://api.themoviedb.org/3/tv/${id}/credits?api_key=${key}&language=en-US`)
         .then((response) => {
             return response.json()
@@ -78,6 +81,7 @@ export const getRecommendedShows = (recommended) => {
 
 export const startGetRecommendedShows = (id, pageNum = 1) => {
     return (dispatch) => {
+        dispatch(loading())
         fetch(`https://api.themoviedb.org/3/tv/${id}/recommendations?api_key=880bbec69207f7697602ce098c1da63e&language=en-US&page=${pageNum}`)
         .then((response) => {
             return response.json()

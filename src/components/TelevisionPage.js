@@ -20,9 +20,6 @@ import { getPage } from '../actions/movies'
 
 
 class TelevisionPage extends React.Component {
-    state = {
-        loading: true
-    }
     
     // If there is a search query --> parse the page number --> Fetch data based on the page number 
     componentDidMount() {               
@@ -60,18 +57,21 @@ class TelevisionPage extends React.Component {
     render() {
         return (        
             <>
-            <Navigation/>
-            <div className="container">
+                <Navigation/>
                 {this.props.isLoading ? 
-                    <ClipLoader                    
-                        size={150}
-                        color={"#D72525"}
-                        loading={!this.props.isLoading}
-                    /> 
-                    : 
-                    <ShowList resetPage={this.resetPage} shows={this.props.shows}/>}               
-                <Footer />
-            </div>
+                    <div className="loader">
+                        <ClipLoader                    
+                            size={150}
+                            color={"#D72525"}
+                            loading={!!this.props.isLoading}
+                        />
+                    </div> 
+                    :
+                    <div className="container">
+                        <ShowList isLoading={this.props.isLoading} resetPage={this.resetPage} shows={this.props.shows}/>  
+                        <Footer />
+                    </div>
+                }
             </>
         )
     }

@@ -2,6 +2,10 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { getPage } from '../actions/movies'
 import { startGetShowDetails, startGetRecommendedShows, startGetShowCast } from '../actions/tv'
+
+import { css } from '@emotion/core'
+import ClipLoader from 'react-spinners/ClipLoader'
+
 import Navigation from './Navigation'
 import Category from './Category'
 import Show from './Show'
@@ -50,18 +54,23 @@ class ShowDetailPage extends React.Component {
     render() {
         return (            
             <>
-                <Navigation/>             
-                <div className="container">              
-                    {this.props.isLoading ? 
-                        <div>Loading...</div> :
-                        <>
-                            <Show details={this.props.details}/>
-                            <Category title={'Recommended'}/>
-                            <RecommendedShows recommended={this.props.recommended}/>                            
-                        </>
-                    }
-                    <Footer/>
-                </div>
+                <Navigation/>
+                {this.props.isLoading ? 
+                    <div className="loader">
+                        <ClipLoader                    
+                            size={150}
+                            color={"#D72525"}
+                            loading={!!this.props.isLoading}
+                        />
+                    </div>
+                    :
+                    <div className="container">                        
+                        <Show details={this.props.details}/>
+                        <Category title={'Recommended'}/>
+                        <RecommendedShows recommended={this.props.recommended}/>                                       
+                        <Footer/>
+                    </div>
+                }
             </>      
         )
     }
