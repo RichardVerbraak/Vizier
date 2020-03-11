@@ -1,0 +1,8 @@
+// 80vh to account for the nav bar up top
+.loader {
+    display: flex;
+    width: 100%;
+    height: 80vh;
+    justify-content: center;
+    align-items: center;
+}

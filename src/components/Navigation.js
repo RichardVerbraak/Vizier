@@ -29,9 +29,9 @@ class Navigation extends React.Component {
                         <p className="navigation__items--item navigation__items--item-1">Tv Shows</p>
                     </Link>
 
-                    <a href="#" className="navigation__items-box">
+                    <Link to="/watchlist" className="navigation__items-box">
                         <p className="navigation__items--item navigation__items--item-1">Your List</p>
-                    </a>           
+                    </Link>           
                 </div>
                 <button className="btn btn__sign-in">Sign In</button>
             </div>

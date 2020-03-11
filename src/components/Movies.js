@@ -1,5 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import { css } from '@emotion/core'
+import ClipLoader from 'react-spinners/ClipLoader'
 
 
 // Used a route for Movies that is being rendered inside the Dashboard component
@@ -10,7 +12,7 @@ import { Link } from 'react-router-dom'
 
 // Change later so it also listens for either popular movies or tv shows
 
-const Movies = ({movies, resetPage}) => {
+const Movies = ({movies, resetPage, isLoading}) => {
     return (
         <div className="movies"> 
             {
@@ -22,12 +24,20 @@ const Movies = ({movies, resetPage}) => {
                             className="movies__item"
                             onClick={resetPage}
                         >
-                            <img
-                                key={movie.id}
-                                src={`https://image.tmdb.org/t/p/w342${movie.poster_path}`}
-                                className="movies__item-img"
-                                alt={`A poster of ${movie.title}`}
-                            ></img>
+                        {isLoading ? 
+                        <ClipLoader                    
+                            size={60}
+                            color={"#D72525"}
+                            loading={!!isLoading}
+                        /> 
+                        : 
+                        <img
+                            key={movie.id}
+                            src={`https://image.tmdb.org/t/p/w342${movie.poster_path}`}
+                            className="movies__item-img"
+                            alt={`A poster of ${movie.title}`}
+                        ></img>}
+                            
                         </Link>
                     )
                 })

@@ -1,5 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
+import { css } from '@emotion/core'
+import ClipLoader from 'react-spinners/ClipLoader'
 
 import Navigation from './Navigation'
 import MovieList from './MovieList'
@@ -34,8 +36,7 @@ class HomePage extends React.Component {
     componentDidUpdate(prevProps) {           
         if (this.props.location.search !== prevProps.location.search) {
             const queryString = require('query-string')
-            const parsed = queryString.parse(this.props.location.search).page
-            
+            const parsed = queryString.parse(this.props.location.search).page           
 
             this.props.getMovies(parsed)
             this.props.getPage(parsed)
@@ -53,11 +54,21 @@ class HomePage extends React.Component {
         return (        
             <>
             <Navigation/>
-            <div className="container">
-                {this.props.isLoading ? <div>Loading...</div> : <MovieList resetPage={this.resetPage} movies={this.props.movies}/>}  
-                <Footer />
-            </div>
-            </>
+            {this.props.isLoading ? 
+                <div className="loader">
+                    <ClipLoader                    
+                        size={150}
+                        color={"#D72525"}
+                        loading={!!this.props.isLoading}
+                    />
+                </div> 
+                :
+                <div className="container">
+                    <MovieList isLoading={this.props.isLoading} resetPage={this.resetPage} movies={this.props.movies}/>}  
+                    <Footer />
+                </div>
+            }
+            </>           
         )
     }
 }

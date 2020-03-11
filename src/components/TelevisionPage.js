@@ -1,5 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
+import { css } from '@emotion/core'
+import ClipLoader from 'react-spinners/ClipLoader'
 
 import Navigation from './Navigation'
 import ShowList from './ShowList'
@@ -15,7 +17,12 @@ import { getPage } from '../actions/movies'
 // Helpful https://stackoverflow.com/questions/40352310/how-do-you-mix-componentdidmount-with-react-redux-connect
 // https://codereview.stackexchange.com/questions/206902/react-container-component-to-fetch-paginated-data-for-a-stateless-table-componen
 
+
+
 class TelevisionPage extends React.Component {
+    state = {
+        loading: true
+    }
     
     // If there is a search query --> parse the page number --> Fetch data based on the page number 
     componentDidMount() {               
@@ -55,7 +62,14 @@ class TelevisionPage extends React.Component {
             <>
             <Navigation/>
             <div className="container">
-                {this.props.isLoading ? <div>Loading...</div> : <ShowList resetPage={this.resetPage} shows={this.props.shows}/>}  
+                {this.props.isLoading ? 
+                    <ClipLoader                    
+                        size={150}
+                        color={"#D72525"}
+                        loading={!this.props.isLoading}
+                    /> 
+                    : 
+                    <ShowList resetPage={this.resetPage} shows={this.props.shows}/>}               
                 <Footer />
             </div>
             </>
@@ -81,3 +95,4 @@ const mapDispatchToProps = (dispatch) => {
 const ConnectedTelevisionPage = connect(mapStateToProps, mapDispatchToProps)(TelevisionPage)
 
 export default ConnectedTelevisionPage
+
