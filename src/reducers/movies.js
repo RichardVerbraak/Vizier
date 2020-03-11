@@ -52,6 +52,11 @@ const movieReducer = (state = initialState, action) => {
                 ...state,
                 recommended: action.recommended
             }
+        case 'LOADING':
+            return {
+                ...state,
+                isLoading: action.isLoading
+            }
         case 'LOADING_FINISHED':
             return {
                 ...state,

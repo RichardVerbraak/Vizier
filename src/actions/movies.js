@@ -2,6 +2,7 @@ const key = process.env.REACT_APP_API_KEY
 
 // URL-ize all the actions based on the route
 
+
 const getMovies = (movies) => {
     return {
         type: 'GET_MOVIES',
@@ -13,7 +14,8 @@ const getMovies = (movies) => {
 // Get movies is a function that has access to dispatch thanks to thunk
 // It first fetches the data and converts it to json, the dispatches the useable data to the reducer who will change the state
 export const startGetMovies = (pageNum = 1) => {
-    return (dispatch) => {         
+    return (dispatch) => {        
+        dispatch(loading()) 
         fetch(`https://api.themoviedb.org/3/discover/movie?api_key=${key}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=${pageNum}`)
         .then((response) => {
             return response.json()
@@ -26,6 +28,15 @@ export const startGetMovies = (pageNum = 1) => {
     }
 }
 
+// Loading action is to set the state of isLoading to true when starting to fetch data (a bit messy, might refactor)
+export const loading = () => {
+    return {
+        type: 'LOADING',
+        isLoading: true
+    }
+}
+
+// Stops the loading spinner
 export const isLoading = () => {
     return {
         type: 'LOADING_FINISHED',
@@ -42,6 +53,7 @@ export const getMovieDetails = (details) => {
 
 export const startGetMovieDetails = (id) => {
     return (dispatch) => {
+        dispatch(loading())
         fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=${key}&language=en-US`)
         .then((response) => {
             return response.json()
@@ -62,6 +74,7 @@ export const getMovieCast = (cast) => {
 
 export const startGetMovieCast = (id) => {
     return (dispatch) => {
+        dispatch(loading())
         fetch(`https://api.themoviedb.org/3/movie/${id}/credits?api_key=${key}`)
         .then((response) => {
             return response.json()
@@ -82,6 +95,7 @@ export const getRecommended = (recommended) => {
 
 export const startGetRecommended = (id, pageNum = 1) => {
     return (dispatch) => {
+        dispatch(loading())
         fetch(`https://api.themoviedb.org/3/movie/${id}/recommendations?api_key=880bbec69207f7697602ce098c1da63e&language=en-US&page=${pageNum}`)
         .then((response) => {
             return response.json()

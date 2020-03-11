@@ -64,10 +64,10 @@ class HomePage extends React.Component {
                 </div> 
                 :
                 <div className="container">
-                    <MovieList isLoading={this.props.isLoading} resetPage={this.resetPage} movies={this.props.movies}/>}  
+                    <MovieList isLoading={this.props.isLoading} resetPage={this.resetPage} movies={this.props.movies}/>  
                     <Footer />
                 </div>
-            }
+            }                        
             </>           
         )
     }

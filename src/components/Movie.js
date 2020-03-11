@@ -2,7 +2,6 @@ import React from 'react'
 import CastSlider from './CastSlider'
 
 class Movie extends React.Component {
-
     render() { 
         return (
             <div className="movie">
