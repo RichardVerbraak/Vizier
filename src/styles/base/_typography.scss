@@ -8,3 +8,8 @@ body {
 a, a:link, a:visited, a:focus, a:hover {
     text-decoration: none;
 }
+
+::selection {
+    background-color: $color-primary;
+    color: #fff;
+}

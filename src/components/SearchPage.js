@@ -2,11 +2,10 @@ import React from 'react'
 import {connect} from 'react-redux'
 import { css } from '@emotion/core'
 import ClipLoader from 'react-spinners/ClipLoader'
-
 import Navigation from './Navigation'
 import MovieList from './MovieList'
 import Footer from './Footer'
-import { startGetMovies, getPage } from '../actions/movies'
+import { startGetSearchResults, getPage } from '../actions/movies'
 
 // Somehow, fetch data from the Redux store and pass that down to the components
 // Pass handlers down to the Child components 
@@ -16,32 +15,30 @@ import { startGetMovies, getPage } from '../actions/movies'
 // Helpful https://stackoverflow.com/questions/40352310/how-do-you-mix-componentdidmount-with-react-redux-connect
 // https://codereview.stackexchange.com/questions/206902/react-container-component-to-fetch-paginated-data-for-a-stateless-table-componen
 
-class HomePage extends React.Component {  
+class SearchPage extends React.Component {    
     
     // If there is a search query --> parse the page number --> Fetch data based on the page number 
-    componentDidMount() {               
+    componentDidMount() {       
         if (this.props.location.search) {
             const queryString = require('query-string')
             const parsed = queryString.parse(this.props.location.search).page
-
-            this.props.getMovies(parsed)
+            
+            this.props.getSearchResults(this.props.match.params.query, parsed)
             this.props.getPage(parsed)
         } else {
-            this.props.getMovies()
+            this.props.getSearchResults(this.props.match.params.query)
             this.props.getPage()
         }        
     }
 
     // If the search query changed --> Fetch data
     componentDidUpdate(prevProps) {           
-        if (this.props.location.search !== prevProps.location.search) {
+        if (this.props.match.params !== prevProps.match.params) {
             const queryString = require('query-string')
-            const parsed = queryString.parse(this.props.location.search).page           
+            const parsed = queryString.parse(this.props.location.search).page         
 
-            this.props.getMovies(parsed)
+            this.props.getSearchResults(this.props.match.params.query, parsed)
             this.props.getPage(parsed)
-            
-            console.log(parsed)
         }        
     }
 
@@ -83,11 +80,11 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        getMovies: (page) => dispatch(startGetMovies(page)),
+        getSearchResults: (query, page) => dispatch(startGetSearchResults(query, page)),
         getPage: (query) => dispatch(getPage(query))
     }
 }
 
-const ConnectedHomePage = connect(mapStateToProps, mapDispatchToProps)(HomePage)
+const ConnectedSearchPage = connect(mapStateToProps, mapDispatchToProps)(SearchPage)
 
-export default ConnectedHomePage
+export default ConnectedSearchPage

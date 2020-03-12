@@ -6,7 +6,6 @@ import AppRouter from './routers/AppRouter'
 import './styles/styles.scss';
 import * as serviceWorker from "./serviceWorker";
 
-
 ReactDOM.render (
     <Provider store={store}>
         <AppRouter />

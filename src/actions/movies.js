@@ -44,6 +44,7 @@ export const isLoading = () => {
     }
 }
 
+// Passes details to reducer
 export const getMovieDetails = (details) => {
     return {
         type: 'GET_DETAILS',
@@ -51,6 +52,7 @@ export const getMovieDetails = (details) => {
     }
 }
 
+// Fetches movie details --> dispatch the action when the data arrives
 export const startGetMovieDetails = (id) => {
     return (dispatch) => {
         dispatch(loading())
@@ -65,6 +67,7 @@ export const startGetMovieDetails = (id) => {
     }
 }
 
+// Passes cast to reducer
 export const getMovieCast = (cast) => {
     return {
         type: 'GET_MOVIE_CAST',
@@ -72,6 +75,7 @@ export const getMovieCast = (cast) => {
     }
 }
 
+// Fetches cast --> dispatch the action when the data arrives
 export const startGetMovieCast = (id) => {
     return (dispatch) => {
         dispatch(loading())
@@ -86,6 +90,7 @@ export const startGetMovieCast = (id) => {
     }
 }
 
+// Passes recommended movies to reducer
 export const getRecommended = (recommended) => {
     return {
         type: 'GET_RECOMMENDED',
@@ -93,6 +98,7 @@ export const getRecommended = (recommended) => {
     }
 }
 
+// Fetches recommended movies --> dispatch the action when the data arrives
 export const startGetRecommended = (id, pageNum = 1) => {
     return (dispatch) => {
         dispatch(loading())
@@ -108,6 +114,31 @@ export const startGetRecommended = (id, pageNum = 1) => {
     }
 }
 
+// Passes search results to reducer
+export const getSearchResults = (movies) => {
+    return {
+        type: 'GET_SEARCH_RESULTS',
+        movies
+    }
+}
+
+// Fetches search results --> dispatch the action when data arrives
+export const startGetSearchResults = (query, pageNum = 1) => {
+    return (dispatch) => {
+        dispatch(loading())
+        fetch(`https://api.themoviedb.org/3/search/movie?api_key=${key}&language=en-US&query=${query}&page=1&include_adult=false`)
+        .then((response) => {
+            return response.json()
+        })
+        .then((data) => {
+            dispatch(getTotalPages(data.results.total_pages))
+            dispatch(getSearchResults(data.results))
+            dispatch(isLoading())
+        })
+    }
+}
+
+// Gets the current URL page -- default is page 1
 export const getPage = (page = 1) => {
     return {
         type: 'GET_PAGE',
@@ -115,6 +146,8 @@ export const getPage = (page = 1) => {
     }
 }
 
+// Gets the total pages received from the API
+// This is done so there won't be more pagination buttons than needed
 export const getTotalPages = (totalPages) => {
     return {
         type: 'GET_TOTAL_PAGES',

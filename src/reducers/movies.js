@@ -52,6 +52,11 @@ const movieReducer = (state = initialState, action) => {
                 ...state,
                 recommended: action.recommended
             }
+        case 'GET_SEARCH_RESULTS':
+            return {
+                ...state,
+                movies: action.movies
+            }
         case 'LOADING':
             return {
                 ...state,
