@@ -1,3 +1,5 @@
+import database from '../firebase/firebase'
+
 const key = process.env.REACT_APP_API_KEY
 
 // URL-ize all the actions based on the route
@@ -126,15 +128,31 @@ export const getSearchResults = (movies) => {
 export const startGetSearchResults = (query, pageNum = 1) => {
     return (dispatch) => {
         dispatch(loading())
-        fetch(`https://api.themoviedb.org/3/search/movie?api_key=${key}&language=en-US&query=${query}&page=1&include_adult=false`)
+        fetch(`https://api.themoviedb.org/3/search/movie?api_key=${key}&query=${query}&page=${pageNum}`)
         .then((response) => {
             return response.json()
         })
         .then((data) => {
-            dispatch(getTotalPages(data.results.total_pages))
+            dispatch(getTotalPages(data.total_pages))
             dispatch(getSearchResults(data.results))
             dispatch(isLoading())
         })
+    }
+}
+
+export const saveToRedux = (id ,movie) => {
+    return {
+        type: 'SAVE_TO_REDUX',
+        movie
+    }
+}
+
+export const addToWatchList = (movie) => {
+    return (dispatch) => {
+        database.ref(`users/movies/movie`).push(movie)
+        .then(() => {
+            dispatch(saveToRedux(movie))
+        })    
     }
 }
 
@@ -154,16 +172,3 @@ export const getTotalPages = (totalPages) => {
         totalPages
     }
 }
-
-// Filter by genre regardless if its movies or TV Shows
-
-// Add a seperate state for your watchlist
-// Add movie or show to list
-// Remove movie or show from list
-
-// Load next page of movies or shows
-
-// Search through shows or movies
-
-// Get all details when clicked on movie (need to pass id from the movie that was clicked)
-// Get all details from tv show 

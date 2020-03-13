@@ -5,6 +5,7 @@ import store from './store/store'
 import AppRouter from './routers/AppRouter'
 import './styles/styles.scss';
 import * as serviceWorker from "./serviceWorker";
+import './firebase/firebase'
 
 ReactDOM.render (
     <Provider store={store}>

@@ -1,6 +1,7 @@
 const initialState = {
     movies: [],
     shows: [],
+    watchlist: [],
     currentPage: 1,
     details: [],
     cast: [],
@@ -56,6 +57,11 @@ const movieReducer = (state = initialState, action) => {
             return {
                 ...state,
                 movies: action.movies
+            }
+        case 'SAVE_TO_REDUX':
+            return {
+                ...state,
+                watchlist: action.movie
             }
         case 'LOADING':
             return {

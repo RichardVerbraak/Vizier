@@ -6,8 +6,7 @@ import { startGetSearchResults } from '../actions/movies'
 // TODO: The search filter should be a component of its own
 // Maybe the sign in button as well
 
-// Link to /discover/Popular (interpolate the popular part)
-
+// Component has access to history with, withRouter
 
 class Navigation extends React.Component {
     state = {
@@ -15,8 +14,8 @@ class Navigation extends React.Component {
     }
     
     onSubmit = (e) => {
-        e.preventDefault()
-        this.props.history.push(`/search/${this.state.search}`)
+        e.preventDefault()        
+        this.props.history.push(`/search/movies/${this.state.search}`)       
     }
     
     // e.persist() lets you access e.target.value in the callback for setState
@@ -28,7 +27,6 @@ class Navigation extends React.Component {
                 search: e.target.value
             }
         })
-        console.log(this.state.search)
     }
     
 
@@ -42,7 +40,7 @@ class Navigation extends React.Component {
                 </Link>                
                 
                 <form onSubmit={this.onSubmit} className="navigation__search">
-                    <input className="navigation__search--bar" onChange={this.updateInput} type="text" placeholder="Search Tv Shows..."></input>
+                    <input className="navigation__search--bar" onChange={this.updateInput} type="text" placeholder="Search Movies..."></input>
                 </form>
 
                 <div className="navigation__items">

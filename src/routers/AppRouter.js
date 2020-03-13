@@ -5,9 +5,9 @@ import SearchPage from '../components/SearchPage'
 import TelevisionPage from '../components/TelevisionPage'
 import MovieDetailPage from '../components/MovieDetailPage'
 import ShowDetailPage from '../components/ShowDetailPage'
-import WatchListPage from '../components/WatchlistPage'
+import WatchListPage from '../components/WatchListPage'
 
-// Uninstall
+// Uninstall or use Router instead of browserrouter because history gets ignored now
 import createHistory from 'history/createBrowserHistory'
 
 export const history = createHistory()
@@ -27,7 +27,7 @@ const AppRouter = () => {
                     )} 
                 />
                 <Route exact path="/discover/:name/Movies" component={HomePage} />
-                <Route exact path="/search/:query" component={SearchPage} />
+                <Route exact path="/search/:media/:query" component={SearchPage} />
                 <Route exact path="/discover/:name/TV" component={TelevisionPage} />
                 <Route exact path="/movie/:id" component={MovieDetailPage} />
                 <Route exact path="/tv/:id" component={ShowDetailPage} />

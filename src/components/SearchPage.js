@@ -18,13 +18,15 @@ import { startGetSearchResults, getPage } from '../actions/movies'
 class SearchPage extends React.Component {    
     
     // If there is a search query --> parse the page number --> Fetch data based on the page number 
-    componentDidMount() {       
+    componentDidMount() {
+
         if (this.props.location.search) {
             const queryString = require('query-string')
             const parsed = queryString.parse(this.props.location.search).page
             
             this.props.getSearchResults(this.props.match.params.query, parsed)
             this.props.getPage(parsed)
+
         } else {
             this.props.getSearchResults(this.props.match.params.query)
             this.props.getPage()

@@ -1,4 +1,5 @@
 import React from 'react'
+import {connect} from 'react-redux'
 import Navigation from './Navigation'
 import Category from './Category'
 import { Link } from 'react-router-dom'
@@ -6,11 +7,12 @@ import image from '../ph-mrrobot.jpg'
 import Footer from './Footer'
 
 
-export default class Watchlist extends React.Component {
+class WatchListPage extends React.Component {
     render() {
+        console.log(this.props)
         return (
             <>
-                <Navigation></Navigation>   
+                <Navigation/>   
                 <div className="container">
                     <Category></Category>
                     <div className="movies">
@@ -69,3 +71,13 @@ export default class Watchlist extends React.Component {
         )
     }
 }
+
+const mapStateToProps = (state) => {
+    return {
+        watchlist: state.watchlist
+    }
+}
+
+const ConnectedWatchListPage = connect(mapStateToProps, undefined)(WatchListPage)
+
+export default ConnectedWatchListPage
