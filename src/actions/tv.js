@@ -15,10 +15,10 @@ const getShows = (shows) => {
 // Add dynamic value for sorting by popularity etc. and for page
 // Get movies is a function that has access to dispatch thanks to thunk
 // It first fetches the data and converts it to json, the dispatches the useable data to the reducer who will change the state
-export const startGetShows = (pageNum = 1) => {    
+export const startGetShows = (filter, pageNum = 1) => {    
     return (dispatch) => {
         dispatch(loading())         
-        fetch(`https://api.themoviedb.org/3/discover/tv?api_key=${key}&language=en-US&sort_by=popularity.desc&page=${pageNum}&include_null_first_air_dates=false`)
+        fetch(`https://api.themoviedb.org/3/tv/${filter}?api_key=${key}&language=en-US&page=${pageNum}`)
         .then((response) => {
             return response.json()
         })

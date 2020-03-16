@@ -22,11 +22,11 @@ const AppRouter = () => {
                     render={() => (
                         <Redirect
                             from="/"
-                            to="/discover/Popular/Movies"
+                            to="/discover/popular/movies"
                         />
                     )} 
                 />
-                <Route exact path="/discover/:name/Movies" component={HomePage} />
+                <Route exact path="/discover/:name/movies" component={HomePage} />
                 <Route exact path="/search/:media/:query" component={SearchPage} />
                 <Route exact path="/discover/:name/TV" component={TelevisionPage} />
                 <Route exact path="/movie/:id" component={MovieDetailPage} />

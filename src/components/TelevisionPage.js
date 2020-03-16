@@ -22,27 +22,29 @@ import { getPage } from '../actions/movies'
 class TelevisionPage extends React.Component {
     
     // If there is a search query --> parse the page number --> Fetch data based on the page number 
-    componentDidMount() {               
+    componentDidMount() {           
+        const filter = this.props.match.params.name      
         if (this.props.location.search) {
             const queryString = require('query-string')
             const parsed = queryString.parse(this.props.location.search).page
 
-            this.props.getShows(parsed)
+            this.props.getShows(filter, parsed)
             this.props.getPage(parsed)
         } else {
-            this.props.getShows()
+            this.props.getShows(filter)
             this.props.getPage()
         }        
     }
 
     // If the search query changed --> Fetch data
-    componentDidUpdate(prevProps) {           
+    componentDidUpdate(prevProps) {
+        const filter = this.props.match.params.name             
         if (this.props.location.search !== prevProps.location.search) {
             const queryString = require('query-string')
             const parsed = queryString.parse(this.props.location.search).page
             
 
-            this.props.getShows(parsed)
+            this.props.getShows(filter, parsed)
             this.props.getPage(parsed)
             
             console.log(parsed)
@@ -87,7 +89,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        getShows: (page) => dispatch(startGetShows(page)),
+        getShows: (filter, page) => dispatch(startGetShows(filter, page)),
         getPage: (query) => dispatch(getPage(query))
     }
 }

@@ -37,7 +37,7 @@ const Movies = ({movies, resetPage, isLoading, addToWatchList}) => {
                                 className="movies__item-img"
                                 alt={`A poster of ${movie.title}`}
                             ></img>}
-                            <button onClick={addToWatchList(movie, index)} className="movies__item--button">Add To WatchList</button>                            
+                                                       
                         </Link>
                     )
                 })
@@ -47,3 +47,5 @@ const Movies = ({movies, resetPage, isLoading, addToWatchList}) => {
 }
 
 export default Movies
+
+// <button onClick={addToWatchList(movie, index)} className="movies__item--button">Add To WatchList</button> 
