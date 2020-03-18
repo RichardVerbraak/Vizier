@@ -18,6 +18,8 @@ import { getPage } from '../actions/movies'
 // Helpful https://stackoverflow.com/questions/40352310/how-do-you-mix-componentdidmount-with-react-redux-connect
 // https://codereview.stackexchange.com/questions/206902/react-container-component-to-fetch-paginated-data-for-a-stateless-table-componen
 
+//TODO: Add filters for TV page
+
 
 
 class TelevisionPage extends React.Component {
@@ -71,7 +73,7 @@ class TelevisionPage extends React.Component {
                     </div> 
                     :
                     <div className="container">
-                        <Category title={this.props.match.params.name} sub={'Tv Shows'} />
+                        <Category title={this.props.match.params.name} media={'tv'} />
                         <ShowList isLoading={this.props.isLoading} resetPage={this.resetPage} shows={this.props.shows}/>  
                         <Footer />
                     </div>

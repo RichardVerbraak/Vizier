@@ -43,7 +43,7 @@ class Navigation extends React.Component {
                 </form>
 
                 <div className="navigation__items">
-                    <NavLink  to="/discover/popular/movies" className="navigation__items-box" activeClassName="selected">
+                    <NavLink  to="/discover/popular/movies" className="navigation__items-box" activeClassName="selectedNav">
                         <p className="navigation__items--item navigation__items--item-1">Movies</p>
                     </NavLink>
 

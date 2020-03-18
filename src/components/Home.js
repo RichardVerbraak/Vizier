@@ -35,10 +35,10 @@ class HomePage extends React.Component {
         }        
     }
 
-    // If the search query changed --> Fetch data
+    // If the search query changed OR the filter --> Fetch data
     componentDidUpdate(prevProps) {
         const filter = this.props.match.params.name             
-        if (this.props.location.search !== prevProps.location.search) {
+        if (this.props.location.search !== prevProps.location.search || this.props.match.params.name !== prevProps.match.params.name) {
             const queryString = require('query-string')
             const parsed = queryString.parse(this.props.location.search).page           
 
@@ -56,7 +56,6 @@ class HomePage extends React.Component {
        
     
     render() {
-        console.log(this.props)
         return (        
             <>
                 <Navigation/>
@@ -70,7 +69,7 @@ class HomePage extends React.Component {
                     </div> 
                     :
                     <div className="container">
-                        <Category title={this.props.match.params.name} sub={'Movies'} />
+                        <Category title={this.props.match.params.name} media={'movies'}/>
                         <MovieList addToWatchList={this.props.addToWatchList} isLoading={this.props.isLoading} resetPage={this.resetPage} movies={this.props.movies}/>  
                         <Footer />
                     </div>

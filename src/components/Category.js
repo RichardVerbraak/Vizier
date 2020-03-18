@@ -1,15 +1,25 @@
 import React from 'react'
+import {NavLink, withRouter} from 'react-router-dom'
 import ReactDOM from 'react-dom'
 import sprite from '../sprite.svg'
 
-// Link on using sprite svgs in React: https://medium.com/@gineetmehta/how-to-use-svg-sprites-regular-html-vs-react-9f98948c03f0
+// Link on using sprite svgs in React: 
 
 // Create dropdown menu or filter?
 // If sorted by tv shows or movies, show that below
-export default class Category extends React.Component {
+class Category extends React.Component {
     state = {
         title: this.props.title,
-        sub: this.props.sub
+        media: this.props.media,
+        selected: false
+    }
+
+    selectFilter = () => {
+        this.setState(() => {
+            return {
+                selected: !this.state.selected
+            }
+        })
     }
 
     render() {
@@ -18,19 +28,25 @@ export default class Category extends React.Component {
                 <div className="category__heading">
                     <h2 className="category__heading--main">{this.state.title}</h2>
                     <div className="category__dropdown">
-                        <p className="category__dropdown-current">Popular</p>
-                        <svg className="category__dropdown-arrow">
+                        <p className="category__dropdown-current selected">{this.props.match.params.name}</p>
+                        <svg className="category__dropdown-arrow" onClick={this.selectFilter}>
                             <use href={sprite + "#icon-triangle-down"}></use>
-                        </svg>                       
-                        <ul className="category__dropdown-list">
-                            <li className="category__dropdown-item">Popular</li>
-                            <li className="category__dropdown-item">Top Rated</li>
-                            <li className="category__dropdown-item">Upcoming</li>
-                        </ul>
+                        </svg>
+                        {this.state.selected && 
+                            <ul className="category__dropdown-list">
+                                <NavLink to={`/discover/popular/${this.props.media}`} className="category__dropdown-list--item" activeClassName="selected">Popular</NavLink>
+                                <NavLink to={`/discover/top_rated/${this.props.media}`} className="category__dropdown-list--item" activeClassName="selected">Top Rated</NavLink>
+                                <NavLink to={`/discover/upcoming/${this.props.media}`} className="category__dropdown-list--item" activeClassName="selected">Upcoming</NavLink>
+                            </ul>
+                        }                     
                     </div>
-                    <h3 className="category__heading--sub">{this.state.sub}</h3>                    
+                    <h3 className="category__heading--sub">{this.state.media}</h3>                    
                 </div>
             </div>
         )
     }
 }
+
+const ConnectedCategory = withRouter(Category)
+
+export default ConnectedCategory
