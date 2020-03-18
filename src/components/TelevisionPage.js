@@ -4,6 +4,7 @@ import { css } from '@emotion/core'
 import ClipLoader from 'react-spinners/ClipLoader'
 
 import Navigation from './Navigation'
+import Category from './Category'
 import ShowList from './ShowList'
 import Footer from './Footer'
 import { startGetShows } from '../actions/tv'
@@ -70,6 +71,7 @@ class TelevisionPage extends React.Component {
                     </div> 
                     :
                     <div className="container">
+                        <Category title={this.props.match.params.name} sub={'Tv Shows'} />
                         <ShowList isLoading={this.props.isLoading} resetPage={this.resetPage} shows={this.props.shows}/>  
                         <Footer />
                     </div>

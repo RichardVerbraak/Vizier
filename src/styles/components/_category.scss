@@ -5,6 +5,7 @@
     &__heading {
         display: grid;
         grid-template-rows: repeat(2, min-content);
+        grid-template-columns: repeat(2, 1fr);
         row-gap: 1.5rem;
 
         color: $color-black;
@@ -22,5 +23,41 @@
             font-weight: 400;
             letter-spacing: $letter-spacing-default;            
         }
+    }
+
+    &__dropdown {
+        display: flex;
+        align-items: center;
+        width: 16rem;
+        height: 3.3rem;
+        padding: 1rem;
+        border: solid black 1px;
+        border-radius: 5px;
+        align-self: center;
+        justify-self: end;
+        justify-content: space-between;
+
+        &-current {
+            font-size: 1.2rem;
+            letter-spacing: $letter-spacing-default;
+            font-weight: normal;
+        }
+
+        &-arrow {
+            display: block;
+            color: $color-primary;
+            height: 1rem;
+            width: 1rem;
+        }
+
+        &-item {
+            display: none;
+            opacity: 0;
+            visibility: hidden;
+        }
+    }
+
+    &__dropdown-list {
+        list-style: none;
     }
 }
