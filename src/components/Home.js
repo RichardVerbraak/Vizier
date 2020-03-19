@@ -3,10 +3,11 @@ import {connect} from 'react-redux'
 import { css } from '@emotion/core'
 import ClipLoader from 'react-spinners/ClipLoader'
 
-
 import Navigation from './Navigation'
+import Filter from './Filter'
 import MovieList from './MovieList'
 import Footer from './Footer'
+
 import { startGetMovies, getPage, addToWatchList } from '../actions/movies'
 import Category from './Category'
 
@@ -44,8 +45,6 @@ class HomePage extends React.Component {
 
             this.props.getMovies(filter, parsed)
             this.props.getPage(parsed)
-            
-            console.log(parsed)
         }        
     }
 
@@ -69,7 +68,7 @@ class HomePage extends React.Component {
                     </div> 
                     :
                     <div className="container">
-                        <Category title={this.props.match.params.name} media={'movies'}/>
+                        <Category filter={<Filter/>} title={this.props.match.params.name} media={'movies'}/>
                         <MovieList addToWatchList={this.props.addToWatchList} isLoading={this.props.isLoading} resetPage={this.resetPage} movies={this.props.movies}/>  
                         <Footer />
                     </div>

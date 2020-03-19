@@ -14,7 +14,7 @@ class WatchListPage extends React.Component {
             <>
                 <Navigation/>   
                 <div className="container">
-                    <Category></Category>
+                    <Category title={'your list'}></Category>
                     <div className="movies">
 
                         <Link to="/movie" className="movies__item">

@@ -4,6 +4,7 @@ import { css } from '@emotion/core'
 import ClipLoader from 'react-spinners/ClipLoader'
 
 import Navigation from './Navigation'
+import Filter from './Filter'
 import Category from './Category'
 import ShowList from './ShowList'
 import Footer from './Footer'
@@ -42,15 +43,12 @@ class TelevisionPage extends React.Component {
     // If the search query changed --> Fetch data
     componentDidUpdate(prevProps) {
         const filter = this.props.match.params.name             
-        if (this.props.location.search !== prevProps.location.search) {
+        if (this.props.location.search !== prevProps.location.search || this.props.match.params.name !== prevProps.match.params.name) {
             const queryString = require('query-string')
-            const parsed = queryString.parse(this.props.location.search).page
-            
+            const parsed = queryString.parse(this.props.location.search).page            
 
             this.props.getShows(filter, parsed)
             this.props.getPage(parsed)
-            
-            console.log(parsed)
         }        
     }
 
@@ -73,7 +71,7 @@ class TelevisionPage extends React.Component {
                     </div> 
                     :
                     <div className="container">
-                        <Category title={this.props.match.params.name} media={'tv'} />
+                        <Category filter={<Filter/>} title={this.props.match.params.name} media={'tv'} />
                         <ShowList isLoading={this.props.isLoading} resetPage={this.resetPage} shows={this.props.shows}/>  
                         <Footer />
                     </div>
