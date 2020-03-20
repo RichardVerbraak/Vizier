@@ -7,16 +7,14 @@ import ClipLoader from 'react-spinners/ClipLoader'
 // Used a route for Movies that is being rendered inside the Dashboard component
 // Now Movies has access to the current URL
 
-// Moved Movies container here so it would have the 5 way grid everywhere this component is used
-// Is now reused for Recommended as well
-
 // Change later so it also listens for either popular movies or tv shows
+// TODO: Fix spinning loader inside if img isnt there
 
 const Movies = ({movies, resetPage, isLoading, addToWatchList}) => {
     return (
         <div className="movies"> 
             {
-            	movies.map((movie, index) => {
+            	movies.map((movie) => {
                     return (
                         <Link
                             key={movie.id}
@@ -37,7 +35,7 @@ const Movies = ({movies, resetPage, isLoading, addToWatchList}) => {
                                 className="movies__item-img"
                                 alt={`A poster of ${movie.title}`}
                             ></img>}
-                                                       
+                            <button onClick={() => addToWatchList(movie)} className="movies__item--button">Add To WatchList</button> 
                         </Link>
                     )
                 })
@@ -48,4 +46,3 @@ const Movies = ({movies, resetPage, isLoading, addToWatchList}) => {
 
 export default Movies
 
-// <button onClick={addToWatchList(movie, index)} className="movies__item--button">Add To WatchList</button> 

@@ -149,8 +149,10 @@ export const saveToRedux = (id ,movie) => {
 
 export const addToWatchList = (movie) => {
     return (dispatch) => {
-        database.ref(`users/movies/movie`).push(movie)
-        .then(() => {
+        console.log(movie)
+        database.ref(`users/watchlist`).push(movie)
+        .then((ref) => {
+            console.log(ref.key)
             dispatch(saveToRedux(movie))
         })    
     }

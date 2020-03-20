@@ -1,10 +1,12 @@
 import React from 'react'
 import {connect} from 'react-redux'
+import { Link } from 'react-router-dom'
+
 import Navigation from './Navigation'
 import Category from './Category'
-import { Link } from 'react-router-dom'
-import image from '../ph-mrrobot.jpg'
 import Footer from './Footer'
+
+import image from '../ph-mrrobot.jpg'
 
 
 class WatchListPage extends React.Component {
@@ -14,10 +16,10 @@ class WatchListPage extends React.Component {
             <>
                 <Navigation/>   
                 <div className="container">
-                    <Category title={'your list'}></Category>
+                    <Category title={'Your List'}></Category>
                     <div className="movies">
 
-                        <Link to="/movie" className="movies__item">
+                        <Link to={`/movie`} className="movies__item">
                             <img src={image} className="movies__item-img"></img>
                         </Link>
                         <a className="movies__item">

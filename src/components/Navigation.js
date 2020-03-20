@@ -55,7 +55,8 @@ class Navigation extends React.Component {
                         <p className="navigation__items--item navigation__items--item-1">Your List</p>
                     </Link>           
                 </div>
-                <button className="btn btn__sign-in">Sign In</button>
+
+                <Link to="/login" className="btn btn__sign-in">Sign In</Link>
             </div>
         )
     }

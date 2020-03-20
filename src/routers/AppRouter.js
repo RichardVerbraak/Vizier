@@ -6,6 +6,7 @@ import TelevisionPage from '../components/TelevisionPage'
 import MovieDetailPage from '../components/MovieDetailPage'
 import ShowDetailPage from '../components/ShowDetailPage'
 import WatchListPage from '../components/WatchListPage'
+import LoginPage from '../components/LoginPage'
 
 // Uninstall or use Router instead of browserrouter because history gets ignored now
 import createHistory from 'history/createBrowserHistory'
@@ -32,6 +33,7 @@ const AppRouter = () => {
                 <Route exact path="/movie/:id" component={MovieDetailPage} />
                 <Route exact path="/tv/:id" component={ShowDetailPage} />
                 <Route exact path="/watchlist" component={WatchListPage} />
+                <Route exact path="/login" component={LoginPage} />
             </Switch>
         </Router>       
     )    
