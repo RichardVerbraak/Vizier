@@ -61,7 +61,7 @@ const movieReducer = (state = initialState, action) => {
         case 'SAVE_TO_REDUX':
             return {
                 ...state,
-                watchlist: action.movie
+                watchlist: [...state.watchlist, action.movie]
             }
         case 'LOADING':
             return {

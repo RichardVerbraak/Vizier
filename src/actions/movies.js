@@ -140,7 +140,7 @@ export const startGetSearchResults = (query, pageNum = 1) => {
     }
 }
 
-export const saveToRedux = (id ,movie) => {
+export const saveToRedux = (movie) => {
     return {
         type: 'SAVE_TO_REDUX',
         movie
@@ -152,7 +152,6 @@ export const addToWatchList = (movie) => {
         console.log(movie)
         database.ref(`users/watchlist`).push(movie)
         .then((ref) => {
-            console.log(ref.key)
             dispatch(saveToRedux(movie))
         })    
     }
