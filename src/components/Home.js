@@ -21,10 +21,11 @@ import Category from './Category'
 
 class HomePage extends React.Component {  
     
-    // If there is a search query --> parse the page number --> Fetch data based on the page number 
-    componentDidMount() {
-        
-        const filter = this.props.match.params.name               
+    // If there is a search query --> parse the page number --> Fetch data based on the page number
+    // Else --> fetch movies based on data and get 
+    componentDidMount() {        
+        const filter = this.props.match.params.name
+
         if (this.props.location.search) {
             const queryString = require('query-string')
             const parsed = queryString.parse(this.props.location.search).page
@@ -33,28 +34,27 @@ class HomePage extends React.Component {
             this.props.getPage(parsed)
         } else {
             this.props.getMovies(filter)
-            this.props.getPage()
+            // this.props.getPage()
         }        
     }
 
     // If the search query changed OR the filter --> Fetch data
     componentDidUpdate(prevProps) {
-        console.log(this.props)
-        const filter = this.props.match.params.name             
+        const filter = this.props.match.params.name
+
         if (this.props.location.search !== prevProps.location.search || this.props.match.params.name !== prevProps.match.params.name) {
             const queryString = require('query-string')
             const parsed = queryString.parse(this.props.location.search).page           
 
             this.props.getMovies(filter, parsed)
             this.props.getPage(parsed)
-        }        
+        }
     }
 
     // Passed down MovieList and then to Movies
     resetPage = () => {
         this.props.getPage()
-    }
-       
+    }       
     
     render() {        
         return (        
@@ -70,7 +70,11 @@ class HomePage extends React.Component {
                     </div> 
                     :
                     <div className="container">
-                        <Category filter={<Filter/>} title={this.props.match.params.name} media={'movies'}/>
+                        <Category 
+                            filter={<Filter/>} 
+                            title={this.props.match.params.name} 
+                            media={'movies'}
+                        />
                         <MovieList 
                             addToWatchList={this.props.addToWatchList} 
                             isLoading={this.props.isLoading} 
@@ -78,7 +82,10 @@ class HomePage extends React.Component {
                             movies={this.props.movies}
                             watchlist={this.props.watchlist}
                         />                              
-                        <Footer/>
+                        <Footer
+                            totalPages={this.props.totalPages}
+                            currentPage={this.props.currentPage}
+                        />
                     </div>
                 }                        
             </>           
@@ -91,6 +98,7 @@ const mapStateToProps = (state) => {
         movies: state.movies,
         isLoading: state.isLoading,
         currentPage: state.currentPage,
+        totalPages: state.totalPages,
         watchlist: state.watchlist
     }    
 }
