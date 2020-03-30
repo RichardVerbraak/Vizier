@@ -15,8 +15,4 @@ firebase.initializeApp(firebaseConfig);
 
 const database = firebase.database()
 
-database.ref().set({
-    name: 'Richard Verbraak'
-})
-
 export default database

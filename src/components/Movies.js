@@ -10,17 +10,15 @@ import ClipLoader from 'react-spinners/ClipLoader'
 // Change later so it also listens for either popular movies or tv shows
 // TODO: Fix spinning loader inside if img isnt there
 
-const Movies = ({movies, watchlist, resetPage, isLoading, addToWatchList}) => {
+const Movies = ({movies, resetPage, isLoading, addToWatchList}) => {
     return (
         <div className="movies"> 
             {
-            	movies.map((movie) => {
+                movies.map((movie) => {
                     return (
                         <div key={movie.id} className="movies__item">
                             <Link
-                                // key={movie.id}
                                 to={`/movie/${movie.id}`}
-                                // className="movies__item"
                                 onClick={resetPage}
                             >                        
                             {isLoading ? 
@@ -42,6 +40,13 @@ const Movies = ({movies, watchlist, resetPage, isLoading, addToWatchList}) => {
                         </div>
                     )
                 })
+            }
+            {
+                Array(20-movies.length).fill(
+                    <a className="movies__empty">
+                            
+                    </a>
+                )
             }
         </div>
     )
