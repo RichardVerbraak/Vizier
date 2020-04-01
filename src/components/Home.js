@@ -22,7 +22,6 @@ import Category from './Category'
 class HomePage extends React.Component {  
     
     // If there is a search query --> parse the page number --> Fetch data based on the page number
-    // Else --> fetch movies based on data and get 
     componentDidMount() {        
         const filter = this.props.match.params.name
 
@@ -34,7 +33,6 @@ class HomePage extends React.Component {
             this.props.getPage(parsed)
         } else {
             this.props.getMovies(filter)
-            // this.props.getPage()
         }        
     }
 

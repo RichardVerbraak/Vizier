@@ -140,20 +140,36 @@ export const startGetSearchResults = (query, pageNum = 1) => {
     }
 }
 
-export const saveToRedux = (movie) => {
+export const setWatchList = (watchlist) => {
     return {
-        type: 'SAVE_TO_REDUX',
-        movie
+        type: 'SET_WATCH_LIST',
+        watchlist
     }
 }
 
+// Only add movies to firebase and then only populate the watchlist when the page loads?
 export const addToWatchList = (movie) => {
     return (dispatch) => {
-        console.log(movie)
         database.ref(`users/watchlist`).push(movie)
-        .then((ref) => {
-            dispatch(saveToRedux(movie))
-        })    
+        // .then(() => {
+        //     dispatch(saveToRedux(movie))
+        // })    
+    }
+}
+
+// TODO: Structure the watchlist differently so it has its own key/id as to avoid pushing on the same movies to the watchlist
+export const startSetWatchList = () => {
+    return (dispatch) => {
+        return database.ref(`users/watchlist`).once('value')
+        .then((snapshot) => {
+            const watchlist = []
+            snapshot.forEach((childSnapshot) => {
+                watchlist.push(childSnapshot.val())
+            }) 
+            dispatch(setWatchList(watchlist))
+        }).then(() => {
+            dispatch(isLoading())
+        })        
     }
 }
 

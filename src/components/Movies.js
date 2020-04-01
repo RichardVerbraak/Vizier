@@ -11,7 +11,7 @@ import ClipLoader from 'react-spinners/ClipLoader'
 // TODO: Fix spinning loader inside if img isnt there
 
 const Movies = ({movies, resetPage, isLoading, addToWatchList}) => {
-    return (
+    return (        
         <div className="movies"> 
             {
                 movies.map((movie) => {
@@ -42,10 +42,10 @@ const Movies = ({movies, resetPage, isLoading, addToWatchList}) => {
                 })
             }
             {
-                Array(20-movies.length).fill(
-                    <a className="movies__empty">
+                Array(20 - movies.length).fill(
+                    <div className="movies__empty">
                             
-                    </a>
+                    </div>
                 )
             }
         </div>

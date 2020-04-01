@@ -1,5 +1,9 @@
 import React from 'react'
 import {connect} from 'react-redux'
+import { startSetWatchList } from '../actions/movies'
+
+import { css } from '@emotion/core'
+import ClipLoader from 'react-spinners/ClipLoader'
 
 import Navigation from './Navigation'
 import MovieList from './MovieList'
@@ -8,16 +12,32 @@ import Footer from './Footer'
 
 
 class WatchListPage extends React.Component {
+    
+    componentDidMount() {
+        console.log(this.props.watchlist)
+        this.props.setWatchList()
+    }
+
     render() {
         console.log(this.props)
         return (
             <>
-                <Navigation/>   
-                <div className="container">
-                    <Category title={'Your List'}></Category>
-                    <MovieList movies={this.props.watchlist}/>
-                    <Footer></Footer>
-                </div>
+                <Navigation/>
+                {this.props.isLoading ? 
+                    <div className="loader">
+                        <ClipLoader                    
+                            size={150}
+                            color={"#D72525"}
+                            loading={!!this.props.isLoading}
+                        />
+                    </div> 
+                    :   
+                    <div className="container">
+                        <Category title={'Your List'}></Category>
+                        <MovieList movies={this.props.watchlist}/>
+                        <Footer></Footer>
+                    </div>
+                }
             </>
         )
     }
@@ -25,11 +45,18 @@ class WatchListPage extends React.Component {
 
 const mapStateToProps = (state) => {
     return {
-        watchlist: state.watchlist
+        watchlist: state.watchlist,
+        isLoading: state.isLoading
     }
 }
 
-const ConnectedWatchListPage = connect(mapStateToProps, undefined)(WatchListPage)
+const mapDispatchToProps = (dispatch) => {
+    return {
+        setWatchList: () => dispatch(startSetWatchList())
+    }
+}
+
+const ConnectedWatchListPage = connect(mapStateToProps, mapDispatchToProps)(WatchListPage)
 
 export default ConnectedWatchListPage
 

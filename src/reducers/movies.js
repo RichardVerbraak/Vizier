@@ -10,7 +10,6 @@ const initialState = {
     totalPages: 0
 }
 
-// Change the state to everthing we add + grab the movies data from the action and add it to our state
 const movieReducer = (state = initialState, action) => {
     switch(action.type) {
         case 'GET_MOVIES':
@@ -58,10 +57,10 @@ const movieReducer = (state = initialState, action) => {
                 ...state,
                 movies: action.movies
             }
-        case 'SAVE_TO_REDUX':
+        case 'SET_WATCH_LIST':
             return {
                 ...state,
-                watchlist: [...state.watchlist, action.movie]
+                watchlist: action.watchlist
             }
         case 'LOADING':
             return {
