@@ -36,7 +36,7 @@ const Movies = ({movies, resetPage, isLoading, addToWatchList}) => {
                                 ></img>}                            
                             </Link>
                             
-                            <button onClick={() => addToWatchList(movie)} className="movies__item--button">Add To WatchList</button> 
+                            <button onClick={() => addToWatchList(movie)} className="movies__item--button">Add To WatchList</button>                            
                         </div>
                     )
                 })
@@ -54,3 +54,5 @@ const Movies = ({movies, resetPage, isLoading, addToWatchList}) => {
 
 export default Movies
 
+// Need to setup action and reducer
+// <button onClick={() => removeFromWatchList(movie)} className="movies__item--button-remove">Remove</button> 

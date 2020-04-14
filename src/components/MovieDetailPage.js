@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { startGetMovieDetails, startGetMovieCast, startGetRecommended, getPage } from '../actions/movies'
+import { startGetMovieDetails, startGetMovieCast, startGetRecommended, getPage, addToWatchList } from '../actions/movies'
 
 import { css } from '@emotion/core'
 import ClipLoader from 'react-spinners/ClipLoader'
@@ -64,7 +64,10 @@ class MovieDetailPage extends React.Component {
                     </div>
                     :
                     <div className="container">                        
-                        <Movie details={this.props.details}/>
+                        <Movie 
+                            details={this.props.details}
+                            addToWatchList={this.props.addToWatchList}
+                        />
                         <Category title={'Recommended'}/>
                         <Recommended recommended={this.props.recommended}/>                                       
                         <Footer/>
@@ -90,7 +93,8 @@ const mapDispatchToProps = (dispatch) => {
         getMovieDetails: (id) => dispatch(startGetMovieDetails(id)),
         getMovieCast: (id) => dispatch(startGetMovieCast(id)),
         getRecommended: (id, pageNum) => dispatch(startGetRecommended(id, pageNum)),
-        getPage: (query) => dispatch(getPage(query))
+        getPage: (query) => dispatch(getPage(query)),
+        addToWatchList: (movie) => dispatch(addToWatchList(movie))
     }
 }
 

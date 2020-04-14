@@ -8,7 +8,7 @@ import Filter from './Filter'
 import MovieList from './MovieList'
 import Footer from './Footer'
 
-import { startGetMovies, getPage, addToWatchList } from '../actions/movies'
+import { startGetMovies, getPage, addToWatchList, startSetWatchList } from '../actions/movies'
 import Category from './Category'
 
 // Somehow, fetch data from the Redux store and pass that down to the components
@@ -31,8 +31,10 @@ class HomePage extends React.Component {
 
             this.props.getMovies(filter, parsed)
             this.props.getPage(parsed)
+            this.props.setWatchList()
         } else {
             this.props.getMovies(filter)
+            this.props.setWatchList()
         }        
     }
 
@@ -78,7 +80,6 @@ class HomePage extends React.Component {
                             isLoading={this.props.isLoading} 
                             resetPage={this.resetPage} 
                             movies={this.props.movies}
-                            watchlist={this.props.watchlist}
                         />                              
                         <Footer
                             totalPages={this.props.totalPages}
@@ -97,7 +98,6 @@ const mapStateToProps = (state) => {
         isLoading: state.isLoading,
         currentPage: state.currentPage,
         totalPages: state.totalPages,
-        watchlist: state.watchlist
     }    
 }
 
@@ -105,7 +105,8 @@ const mapDispatchToProps = (dispatch) => {
     return {
         getMovies: (filter, page) => dispatch(startGetMovies(filter, page)),
         getPage: (query) => dispatch(getPage(query)),
-        addToWatchList: (movie) => dispatch(addToWatchList(movie))
+        addToWatchList: (movie) => dispatch(addToWatchList(movie)),
+        setWatchList: () => dispatch(startSetWatchList())
     }
 }
 

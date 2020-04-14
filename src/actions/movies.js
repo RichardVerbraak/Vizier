@@ -58,7 +58,7 @@ export const getMovieDetails = (details) => {
 export const startGetMovieDetails = (id) => {
     return (dispatch) => {
         dispatch(loading())
-        fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=${key}&language=en-US`)
+        fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=${key}&append_to_response=videos`)
         .then((response) => {
             return response.json()
         })

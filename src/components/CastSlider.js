@@ -13,7 +13,7 @@ class CastSlider extends React.Component {
             dots: false,
             infinite: true,
             autoplay: true,
-            autoplaySpeed: 4000,
+            autoplaySpeed: 3000,
             swipeToSlide: true,
             speed: 500,
             slidesToShow: 4,
