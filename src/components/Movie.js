@@ -5,8 +5,8 @@ const Movie = ({ details, addToWatchList }) => {
     return (
         <div className="movie">
             <img className="movie__img" src={`https://image.tmdb.org/t/p/w500${details.poster_path}`} alt={`A poster of ${details.title}`}></img>
-            <div className="movie__content">
 
+            <div className="movie__content">
                 <div className="movie__heading">
                     <h1 className="movie__heading-main">{details.title}</h1>
                     <h2 className="movie__heading-sub">{details.tagline}</h2>
