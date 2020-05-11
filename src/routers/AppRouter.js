@@ -9,13 +9,10 @@ import WatchListPage from '../components/WatchListPage'
 import LoginPage from '../components/LoginPage'
 
 // Uninstall or use Router instead of browserrouter because history gets ignored now
-import createHistory from 'history/createBrowserHistory'
-
-export const history = createHistory()
 
 const AppRouter = () => {    
     return (
-        <Router history={history}>
+        <Router>
             <Switch>                
                 <Route 
                     path='/' 

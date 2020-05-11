@@ -30,12 +30,17 @@ const Movie = ({ details, addToWatchList }) => {
                 
                 <div className="movie__links">
                     <button className="movie__links--watchlist btn btn__watchlist" onClick={() => addToWatchList(details)}>Add to watchlist</button>
-                    <a className="movie__links--watchlist btn btn__imdb" href={`https://www.imdb.com/title/${details.imdb_id}/`}>IMDB</a>
-                    <a className="movie__links--watchlist btn btn__trailer" href={`https://www.youtube.com/watch?v=${details.videos.results[0].key}`}>Trailer</a>
+
+                    {details.imdb_id && <a className="movie__links--watchlist btn btn__imdb" href={`https://www.imdb.com/title/${details.imdb_id}/`}>IMDB</a>}
+                    {details.videos && <a className="movie__links--watchlist btn btn__trailer" href={`https://www.youtube.com/watch?v=${details.videos.results[0].key}`}>Trailer</a>}
+                    
+                    
                 </div>
             </div>
         </div>
     )    
 }
+
+// {details.videos.results[0].key && <a className="movie__links--watchlist btn btn__trailer" href={`https://www.youtube.com/watch?v=${details.videos.results[0].key}`}>Trailer</a>}
 
 export default Movie

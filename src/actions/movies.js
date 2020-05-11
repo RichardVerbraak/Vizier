@@ -56,10 +56,10 @@ export const getMovieDetails = (details) => {
 
 // Fetches movie details --> dispatch the action when the data arrives
 export const startGetMovieDetails = (id) => {
-    return (dispatch) => {
-        dispatch(loading())
+    return (dispatch) => {        
         fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=${key}&append_to_response=videos`)
         .then((response) => {
+            dispatch(loading())
             return response.json()
         })
         .then((data) => {
@@ -79,10 +79,10 @@ export const getMovieCast = (cast) => {
 
 // Fetches cast --> dispatch the action when the data arrives
 export const startGetMovieCast = (id) => {
-    return (dispatch) => {
-        dispatch(loading())
+    return (dispatch) => {        
         fetch(`https://api.themoviedb.org/3/movie/${id}/credits?api_key=${key}`)
         .then((response) => {
+            dispatch(loading())
             return response.json()
         })
         .then((data) => {
@@ -102,10 +102,10 @@ export const getRecommended = (recommended) => {
 
 // Fetches recommended movies --> dispatch the action when the data arrives
 export const startGetRecommended = (id, pageNum = 1) => {
-    return (dispatch) => {
-        dispatch(loading())
+    return (dispatch) => {        
         fetch(`https://api.themoviedb.org/3/movie/${id}/recommendations?api_key=880bbec69207f7697602ce098c1da63e&language=en-US&page=${pageNum}`)
         .then((response) => {
+            dispatch(loading())
             return response.json()
         })
         .then((data) => {

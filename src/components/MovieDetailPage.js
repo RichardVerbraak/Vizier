@@ -19,6 +19,9 @@ import Footer from './Footer'
 // Add svg icons in the buttons 
 
 class MovieDetailPage extends React.Component {
+    state = {
+        loading: true
+    }
 
     // If there is a search query --> parse the page number --> Fetch data based on the page number
     componentDidMount() {
@@ -27,7 +30,7 @@ class MovieDetailPage extends React.Component {
             const parsed = queryString.parse(this.props.location.search).page
 
             this.props.getRecommended(this.props.match.params.id ,parsed)
-            this.props.getPage(parsed)
+            this.props.getPage(parsed)            
         } else {
             this.props.getMovieDetails(this.props.match.params.id)        
             this.props.getMovieCast(this.props.match.params.id)
@@ -42,7 +45,6 @@ class MovieDetailPage extends React.Component {
         if(this.props.match.params.id !== prevProps.match.params.id || this.props.location.search !== prevProps.location.search) {
             const queryString = require('query-string')
             const parsed = queryString.parse(this.props.location.search).page
-
             this.props.getMovieDetails(this.props.match.params.id)
             this.props.getMovieCast(this.props.match.params.id)
             this.props.getRecommended(this.props.match.params.id ,parsed)
