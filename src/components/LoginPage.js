@@ -2,6 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 
 // Either display grid or flex with inputs wrapped in box
+// TODO: Fix the space between the logo and the top of the page (pseudo elements are being ignored)
 
 export default class LoginPage extends React.Component {
     render() {
