@@ -2,6 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 
 // Convert to functional component
+// Also change it so recommended tab doesnt show when there arent any
 
 class Recommended extends React.Component {
     

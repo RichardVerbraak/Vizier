@@ -8,13 +8,8 @@ import Filter from './Filter'
 import MovieList from './MovieList'
 import Footer from './Footer'
 
-import { startGetMovies, getPage, addToWatchList, startSetWatchList } from '../actions/movies'
+import { startGetMovies, getPage, addToWatchList, removeFromWatchList, startSetWatchList } from '../actions/movies'
 import Category from './Category'
-
-// Somehow, fetch data from the Redux store and pass that down to the components
-// Pass handlers down to the Child components 
-
-// Maybe make a button that gets passed down in footer
 
 // Helpful https://stackoverflow.com/questions/40352310/how-do-you-mix-componentdidmount-with-react-redux-connect
 // https://codereview.stackexchange.com/questions/206902/react-container-component-to-fetch-paginated-data-for-a-stateless-table-componen
@@ -54,9 +49,10 @@ class HomePage extends React.Component {
     // Passed down MovieList and then to Movies
     resetPage = () => {
         this.props.getPage()
-    }       
+    }   
     
-    render() {        
+    render() { 
+        console.log(this.props.watchlist)       
         return (        
             <>
                 <Navigation/>
@@ -76,10 +72,12 @@ class HomePage extends React.Component {
                             media={'movies'}
                         />
                         <MovieList 
-                            addToWatchList={this.props.addToWatchList} 
+                            addWatchList={this.props.addWatchList}
+                            removeWatchList={this.props.removeWatchList} 
                             isLoading={this.props.isLoading} 
                             resetPage={this.resetPage} 
                             movies={this.props.movies}
+                            watchlist={this.props.watchlist}
                         />                              
                         <Footer
                             totalPages={this.props.totalPages}
@@ -95,6 +93,7 @@ class HomePage extends React.Component {
 const mapStateToProps = (state) => {
     return {
         movies: state.movies,
+        watchlist: state.watchlist,
         isLoading: state.isLoading,
         currentPage: state.currentPage,
         totalPages: state.totalPages,
@@ -105,7 +104,8 @@ const mapDispatchToProps = (dispatch) => {
     return {
         getMovies: (filter, page) => dispatch(startGetMovies(filter, page)),
         getPage: (query) => dispatch(getPage(query)),
-        addToWatchList: (movie) => dispatch(addToWatchList(movie)),
+        addWatchList: (movie) => dispatch(addToWatchList(movie)),
+        removeWatchList: (movie) => dispatch(removeFromWatchList(movie)),
         setWatchList: () => dispatch(startSetWatchList())
     }
 }

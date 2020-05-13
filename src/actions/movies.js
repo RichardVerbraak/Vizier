@@ -12,7 +12,6 @@ const getMovies = (movies) => {
     }
 }
 
-// Add dynamic value for sorting by popularity etc. and for page
 // Get movies is a function that has access to dispatch thanks to thunk
 // It first fetches the data and converts it to json, the dispatches the useable data to the reducer who will change the state
 export const startGetMovies = (filter, pageNum = 1) => {
@@ -24,8 +23,9 @@ export const startGetMovies = (filter, pageNum = 1) => {
         })
         .then((data) => {
             dispatch(getTotalPages(data.total_pages))
-            dispatch(getMovies(data.results))
-            dispatch(isLoading())            
+            dispatch(getMovies(data.results))          
+        }).then(() => {
+            dispatch(isLoading())
         })
     }
 }
@@ -64,6 +64,7 @@ export const startGetMovieDetails = (id) => {
         })
         .then((data) => {
             dispatch(getMovieDetails(data))
+        }).then(() => {
             dispatch(isLoading())
         })
     }
@@ -111,6 +112,7 @@ export const startGetRecommended = (id, pageNum = 1) => {
         .then((data) => {
             dispatch(getTotalPages(data.total_pages))
             dispatch(getRecommended(data.results))
+        }).then(() => {
             dispatch(isLoading())
         })
     }
@@ -134,7 +136,8 @@ export const startGetSearchResults = (query, pageNum = 1) => {
         })
         .then((data) => {
             dispatch(getTotalPages(data.total_pages))
-            dispatch(getSearchResults(data.results))
+            dispatch(getSearchResults(data.results))            
+        }).then(() => {
             dispatch(isLoading())
         })
     }
@@ -149,11 +152,14 @@ export const setWatchList = (watchlist) => {
 
 // Only add movies to firebase and then only populate the watchlist when the page loads?
 export const addToWatchList = (movie) => {
-    return (dispatch) => {
-        database.ref(`users/watchlist`).push(movie)
-        // .then(() => {
-        //     dispatch(saveToRedux(movie))
-        // })    
+    return () => {
+        database.ref(`users/watchlist/`).push(movie)
+    }
+}
+
+export const removeFromWatchList = (movie) => {
+    return () => {
+        database.ref(`users/watchlist/`).remove()
     }
 }
 

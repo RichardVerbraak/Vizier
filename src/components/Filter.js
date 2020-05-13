@@ -21,7 +21,7 @@ class Filter extends React.Component {
         return (
             <>
                 <input type="checkbox" className="category__checkbox" id="category__dropdown-toggle"/>
-                <label className="category__dropdown" for="category__dropdown-toggle">
+                <label className="category__dropdown" htmlFor="category__dropdown-toggle">
                     <p className="category__dropdown-current selected">{this.props.match.params.name.replace(/_/g, " ")}</p>
                     
                     <svg className="category__dropdown-arrow" onClick={this.selectFilter}>

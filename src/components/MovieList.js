@@ -3,16 +3,15 @@ import Movies from './Movies'
 
 class MovieList extends React.Component {
     render() {
-        if (this.props.movies) {
-            return (                                  
-                <Movies addToWatchList={this.props.addToWatchList} resetPage={this.props.resetPage} movies={this.props.movies}/>                      
-            )
-        } else {
-            return (
-                <div>Nothing</div>
-            )
-        }
-        
+        return (                                  
+            <Movies 
+                addWatchList={this.props.addWatchList}
+                removeWatchList={this.props.removeWatchList} 
+                resetPage={this.props.resetPage} 
+                movies={this.props.movies}
+                watchlist={this.props.watchlist}
+            />                      
+        )                
     }    
 }
 

@@ -10,7 +10,16 @@ import ClipLoader from 'react-spinners/ClipLoader'
 // Change later so it also listens for either popular movies or tv shows
 // TODO: Fix spinning loader inside if img isnt there
 
-const Movies = ({movies, resetPage, isLoading, addToWatchList}) => {
+// Look at a cleaner faster solution for the add / remove watchlist button
+
+const Movies = ({movies, watchlist, resetPage, isLoading, addWatchList, removeWatchList}) => {
+    console.log(watchlist)
+    const watchlistIDs = []
+    watchlist.forEach((movie) => {
+        watchlistIDs.push(movie.id)
+    })
+    console.log(watchlistIDs)
+
     return (        
         <div className="movies"> 
             {
@@ -35,8 +44,11 @@ const Movies = ({movies, resetPage, isLoading, addToWatchList}) => {
                                     alt={`A poster of ${movie.title}`}
                                 ></img>}                            
                             </Link>
-                            
-                            <button onClick={() => addToWatchList(movie)} className="movies__item--button">Add To WatchList</button>                            
+                            {watchlistIDs.includes(movie.id) ? 
+                                <button onClick={() => removeWatchList(movie)} className="movies__item--button">Remove</button>
+                                :
+                                <button onClick={() => addWatchList(movie)} className="movies__item--button">Add To Watchlist</button>
+                            }                                                                                    
                         </div>
                     )
                 })
@@ -53,6 +65,3 @@ const Movies = ({movies, resetPage, isLoading, addToWatchList}) => {
 }
 
 export default Movies
-
-// Need to setup action and reducer
-// <button onClick={() => removeFromWatchList(movie)} className="movies__item--button-remove">Remove</button> 
