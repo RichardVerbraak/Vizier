@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Fragment } from 'react'
 import { connect } from 'react-redux'
 import { startSetWatchList } from '../actions/movies'
 
@@ -17,9 +17,9 @@ class WatchListPage extends React.Component {
 	}
 
 	render() {
-		console.log(this.props)
+		// console.log(this.props)
 		return (
-			<>
+			<Fragment>
 				<Navigation />
 				{this.props.isLoading ? (
 					<div className='loader'>
@@ -36,7 +36,7 @@ class WatchListPage extends React.Component {
 						<Footer></Footer>
 					</div>
 				)}
-			</>
+			</Fragment>
 		)
 	}
 }

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Fragment } from 'react'
 import { NavLink, withRouter } from 'react-router-dom'
 import sprite from '../sprite.svg'
 
@@ -19,7 +19,7 @@ class Filter extends React.Component {
 
 	render() {
 		return (
-			<>
+			<Fragment>
 				<input
 					type='checkbox'
 					className='category__checkbox'
@@ -63,7 +63,7 @@ class Filter extends React.Component {
 						)}
 					</ul>
 				</label>
-			</>
+			</Fragment>
 		)
 	}
 }

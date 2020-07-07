@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Fragment } from 'react'
 import { connect } from 'react-redux'
 import { css } from '@emotion/core'
 import ClipLoader from 'react-spinners/ClipLoader'
@@ -48,7 +48,7 @@ class SearchPage extends React.Component {
 
 	render() {
 		return (
-			<>
+			<Fragment>
 				<Navigation />
 				{this.props.isLoading ? (
 					<div className='loader'>
@@ -68,7 +68,7 @@ class SearchPage extends React.Component {
 						<Footer />
 					</div>
 				)}
-			</>
+			</Fragment>
 		)
 	}
 }

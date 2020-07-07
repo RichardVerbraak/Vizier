@@ -19,7 +19,7 @@ const Movies = ({
 	addWatchList,
 	removeWatchList,
 }) => {
-	console.log(watchlist)
+	// console.log(watchlist)
 	const watchlistIDs = []
 	watchlist.forEach((movie) => {
 		watchlistIDs.push(movie.id)

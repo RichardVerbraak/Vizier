@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Fragment } from 'react'
 import { connect } from 'react-redux'
 import { getPage } from '../actions/movies'
 import {
@@ -58,7 +58,7 @@ class ShowDetailPage extends React.Component {
 
 	render() {
 		return (
-			<>
+			<Fragment>
 				<Navigation />
 				{this.props.isLoading ? (
 					<div className='loader'>
@@ -76,7 +76,7 @@ class ShowDetailPage extends React.Component {
 						<Footer />
 					</div>
 				)}
-			</>
+			</Fragment>
 		)
 	}
 }
