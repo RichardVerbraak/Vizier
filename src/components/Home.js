@@ -1,6 +1,5 @@
 import React, { Fragment } from 'react'
 import { connect } from 'react-redux'
-import { css } from '@emotion/core'
 import ClipLoader from 'react-spinners/ClipLoader'
 
 import Navigation from './Navigation'
@@ -9,7 +8,7 @@ import MovieList from './MovieList'
 import Footer from './Footer'
 
 import {
-	startGetMovies,
+	getMovies,
 	getPage,
 	addToWatchList,
 	removeFromWatchList,
@@ -64,12 +63,12 @@ class HomePage extends React.Component {
 		return (
 			<Fragment>
 				<Navigation />
-				{this.props.isLoading ? (
+				{this.props.loading ? (
 					<div className='loader'>
 						<ClipLoader
 							size={150}
 							color={'#D72525'}
-							loading={!!this.props.isLoading}
+							loading={this.props.loading}
 						/>
 					</div>
 				) : (
@@ -103,6 +102,7 @@ const mapStateToProps = (state) => {
 		movies: state.movies,
 		watchlist: state.watchlist,
 		isLoading: state.isLoading,
+		loading: state.loading,
 		currentPage: state.currentPage,
 		totalPages: state.totalPages,
 	}
@@ -110,7 +110,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
 	return {
-		getMovies: (filter, page) => dispatch(startGetMovies(filter, page)),
+		getMovies: (filter, page) => dispatch(getMovies(filter, page)),
 		getPage: (query) => dispatch(getPage(query)),
 		addWatchList: (movie) => dispatch(addToWatchList(movie)),
 		removeWatchList: (movie) => dispatch(removeFromWatchList(movie)),

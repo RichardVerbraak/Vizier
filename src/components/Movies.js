@@ -1,6 +1,5 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { css } from '@emotion/core'
 import ClipLoader from 'react-spinners/ClipLoader'
 
 // Used a route for Movies that is being rendered inside the Dashboard component

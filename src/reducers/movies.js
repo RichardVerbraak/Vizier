@@ -7,15 +7,19 @@ const initialState = {
 	cast: [],
 	recommended: [],
 	isLoading: true,
+	loading: false,
 	totalPages: 0,
+	error: null,
 }
 
 const movieReducer = (state = initialState, action) => {
 	switch (action.type) {
 		case 'GET_MOVIES':
+			console.log(`${action} dispatched with payload of ${action.payload}`)
 			return {
 				...state,
-				movies: action.movies,
+				movies: action.payload,
+				loading: false,
 			}
 		case 'GET_SHOWS':
 			return {
@@ -25,7 +29,7 @@ const movieReducer = (state = initialState, action) => {
 		case 'GET_DETAILS':
 			return {
 				...state,
-				details: action.details,
+				details: action.payload,
 			}
 		case 'GET_SHOW_DETAILS':
 			return {
@@ -61,6 +65,11 @@ const movieReducer = (state = initialState, action) => {
 			return {
 				...state,
 				watchlist: action.watchlist,
+			}
+		case 'SET_LOADING':
+			return {
+				...state,
+				loading: true,
 			}
 		case 'LOADING':
 			return {

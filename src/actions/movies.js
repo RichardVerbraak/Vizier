@@ -4,31 +4,33 @@ const key = process.env.REACT_APP_API_KEY
 
 // URL-ize all the actions based on the route
 
-const getMovies = (movies) => {
-	return {
-		type: 'GET_MOVIES',
-		movies,
-	}
-}
-
 // Get movies is a function that has access to dispatch thanks to thunk
 // It first fetches the data and converts it to json, the dispatches the useable data to the reducer who will change the state
-export const startGetMovies = (filter, pageNum = 1) => {
-	return (dispatch) => {
-		dispatch(loading())
-		fetch(
-			`https://api.themoviedb.org/3/movie/${filter}?api_key=${key}&language=en-US&page=${pageNum}`
-		)
-			.then((response) => {
-				return response.json()
+export const getMovies = (filter, pageNum = 1) => {
+	return async (dispatch) => {
+		try {
+			setLoading()
+
+			const res = await fetch(
+				`https://api.themoviedb.org/3/movie/${filter}?api_key=${key}&language=en-US&page=${pageNum}`
+			)
+
+			const data = await res.json()
+
+			dispatch({
+				type: 'GET_TOTAL_PAGES',
+				payload: data.total_pages,
 			})
-			.then((data) => {
-				dispatch(getTotalPages(data.total_pages))
-				dispatch(getMovies(data.results))
+			dispatch({
+				type: 'GET_MOVIES',
+				payload: data.results,
 			})
-			.then(() => {
-				dispatch(isLoading())
+		} catch (error) {
+			dispatch({
+				type: 'MOVIES_ERROR',
+				payload: error.message,
 			})
+		}
 	}
 }
 
@@ -48,30 +50,28 @@ export const isLoading = () => {
 	}
 }
 
-// Passes details to reducer
-export const getMovieDetails = (details) => {
-	return {
-		type: 'GET_DETAILS',
-		details,
-	}
-}
-
 // Fetches movie details --> dispatch the action when the data arrives
-export const startGetMovieDetails = (id) => {
-	return (dispatch) => {
-		fetch(
-			`https://api.themoviedb.org/3/movie/${id}?api_key=${key}&append_to_response=videos`
-		)
-			.then((response) => {
-				dispatch(loading())
-				return response.json()
+export const getMovieDetails = (id) => {
+	return async (dispatch) => {
+		try {
+			setLoading()
+
+			const res = await fetch(
+				`https://api.themoviedb.org/3/movie/${id}?api_key=${key}&append_to_response=videos`
+			)
+
+			const data = await res.json()
+
+			dispatch({
+				type: 'GET_DETAILS',
+				payload: data,
 			})
-			.then((data) => {
-				dispatch(getMovieDetails(data))
+		} catch (error) {
+			dispatch({
+				type: 'MOVIES_ERROR',
+				payload: error.message,
 			})
-			.then(() => {
-				dispatch(isLoading())
-			})
+		}
 	}
 }
 
@@ -207,5 +207,11 @@ export const getTotalPages = (totalPages) => {
 	return {
 		type: 'GET_TOTAL_PAGES',
 		totalPages,
+	}
+}
+
+export const setLoading = () => {
+	return {
+		type: 'SET_LOADING',
 	}
 }

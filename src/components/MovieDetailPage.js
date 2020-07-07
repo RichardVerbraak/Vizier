@@ -1,14 +1,13 @@
 import React, { Fragment } from 'react'
 import { connect } from 'react-redux'
 import {
-	startGetMovieDetails,
+	getMovieDetails,
 	startGetMovieCast,
 	startGetRecommended,
 	getPage,
 	addToWatchList,
 } from '../actions/movies'
 
-import { css } from '@emotion/core'
 import ClipLoader from 'react-spinners/ClipLoader'
 
 import Navigation from './Navigation'
@@ -100,7 +99,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
 	return {
-		getMovieDetails: (id) => dispatch(startGetMovieDetails(id)),
+		getMovieDetails: (id) => dispatch(getMovieDetails(id)),
 		getMovieCast: (id) => dispatch(startGetMovieCast(id)),
 		getRecommended: (id, pageNum) => dispatch(startGetRecommended(id, pageNum)),
 		getPage: (query) => dispatch(getPage(query)),

@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react'
 import { connect } from 'react-redux'
-import { css } from '@emotion/core'
+
 import ClipLoader from 'react-spinners/ClipLoader'
 import Navigation from './Navigation'
 import MovieList from './MovieList'

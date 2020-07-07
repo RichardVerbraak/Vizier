@@ -7,7 +7,6 @@ import {
 	startGetShowCast,
 } from '../actions/tv'
 
-import { css } from '@emotion/core'
 import ClipLoader from 'react-spinners/ClipLoader'
 
 import Navigation from './Navigation'

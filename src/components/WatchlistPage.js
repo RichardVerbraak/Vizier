@@ -2,7 +2,6 @@ import React, { Fragment } from 'react'
 import { connect } from 'react-redux'
 import { startSetWatchList } from '../actions/movies'
 
-import { css } from '@emotion/core'
 import ClipLoader from 'react-spinners/ClipLoader'
 
 import Navigation from './Navigation'
@@ -17,7 +16,6 @@ class WatchListPage extends React.Component {
 	}
 
 	render() {
-		// console.log(this.props)
 		return (
 			<Fragment>
 				<Navigation />
