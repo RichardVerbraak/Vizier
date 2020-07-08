@@ -6,7 +6,6 @@ const initialState = {
 	details: [],
 	cast: [],
 	recommended: [],
-	isLoading: true,
 	loading: false,
 	totalPages: 0,
 	error: null,
@@ -73,16 +72,6 @@ const movieReducer = (state = initialState, action) => {
 			return {
 				...state,
 				loading: true,
-			}
-		case 'LOADING':
-			return {
-				...state,
-				isLoading: action.isLoading,
-			}
-		case 'LOADING_FINISHED':
-			return {
-				...state,
-				isLoading: action.isLoading,
 			}
 		case 'GET_PAGE':
 			return {

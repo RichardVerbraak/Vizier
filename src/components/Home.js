@@ -59,7 +59,6 @@ class HomePage extends React.Component {
 	}
 
 	render() {
-		// console.log(this.props.watchlist)
 		return (
 			<Fragment>
 				<Navigation />
@@ -85,10 +84,7 @@ class HomePage extends React.Component {
 							movies={this.props.movies}
 							watchlist={this.props.watchlist}
 						/>
-						<Footer
-							totalPages={this.props.totalPages}
-							currentPage={this.props.currentPage}
-						/>
+						<Footer />
 					</div>
 				)}
 			</Fragment>
@@ -103,8 +99,6 @@ const mapStateToProps = (state) => {
 		movies: state.movies,
 		watchlist: state.watchlist,
 		loading: state.loading,
-		currentPage: state.currentPage,
-		totalPages: state.totalPages,
 	}
 }
 

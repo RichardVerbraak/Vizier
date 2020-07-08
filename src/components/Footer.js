@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import { connect } from 'react-redux'
 
 // Helpful Link https://stackoverflow.com/questions/48151696/undefined-in-variable-using-react-componentdidmount
 
@@ -41,4 +42,13 @@ const Footer = ({ currentPage, totalPages }) => {
 	)
 }
 
-export default Footer
+const mapStateToProps = (state) => {
+	return {
+		currentPage: state.currentPage,
+		totalPages: state.totalPages,
+	}
+}
+
+const ConnectedFooter = connect(mapStateToProps, undefined)(Footer)
+
+export default ConnectedFooter

@@ -2,6 +2,7 @@ import React from 'react'
 import Filter from './Filter'
 
 // Regex to remove underscore
+// Pull all the props from Redux instead of passing it down (why did I even do this)
 const Category = ({ title, media, filter }) => {
 	return (
 		<div className='category'>
