@@ -3,14 +3,9 @@ import { connect } from 'react-redux'
 
 import ClipLoader from 'react-spinners/ClipLoader'
 import Navigation from './Navigation'
-import MovieList from './MovieList'
+import Movies from './Movies'
 import Footer from './Footer'
 import { getSearchResults, getPage } from '../actions/movies'
-
-// Somehow, fetch data from the Redux store and pass that down to the components
-// Pass handlers down to the Child components
-
-// Maybe make a button that gets passed down in footer
 
 // Helpful https://stackoverflow.com/questions/40352310/how-do-you-mix-componentdidmount-with-react-redux-connect
 // https://codereview.stackexchange.com/questions/206902/react-container-component-to-fetch-paginated-data-for-a-stateless-table-componen
@@ -60,11 +55,7 @@ class SearchPage extends React.Component {
 					</div>
 				) : (
 					<div className='container'>
-						<MovieList
-							isLoading={this.props.loading}
-							resetPage={this.resetPage}
-							movies={this.props.movies}
-						/>
+						<Movies />
 						<Footer />
 					</div>
 				)}
@@ -75,9 +66,7 @@ class SearchPage extends React.Component {
 
 const mapStateToProps = (state) => {
 	return {
-		movies: state.movies,
 		loading: state.loading,
-		currentPage: state.currentPage,
 	}
 }
 
