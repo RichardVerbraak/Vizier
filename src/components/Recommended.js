@@ -1,4 +1,5 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 
 // Convert to functional component
@@ -36,4 +37,12 @@ class Recommended extends React.Component {
 	}
 }
 
-export default Recommended
+const mapStateToProps = (state) => {
+	return {
+		recommended: state.recommended,
+	}
+}
+
+const ConnectedRecommended = connect(mapStateToProps, undefined)(Recommended)
+
+export default ConnectedRecommended

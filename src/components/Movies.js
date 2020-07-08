@@ -14,7 +14,7 @@ const Movies = ({
 	movies,
 	watchlist,
 	resetPage,
-	isLoading,
+	loading,
 	addWatchList,
 	removeWatchList,
 }) => {
@@ -31,8 +31,8 @@ const Movies = ({
 				return (
 					<div key={movie.id} className='movies__item'>
 						<Link to={`/movie/${movie.id}`} onClick={resetPage}>
-							{isLoading ? (
-								<ClipLoader size={60} color={'#D72525'} loading={!!isLoading} />
+							{loading ? (
+								<ClipLoader size={60} color={'#D72525'} loading={loading} />
 							) : (
 								<img
 									key={movie.id}

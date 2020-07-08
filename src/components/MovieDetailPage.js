@@ -2,8 +2,8 @@ import React, { Fragment } from 'react'
 import { connect } from 'react-redux'
 import {
 	getMovieDetails,
-	startGetMovieCast,
-	startGetRecommended,
+	getMovieCast,
+	getRecommended,
 	getPage,
 	addToWatchList,
 } from '../actions/movies'
@@ -63,12 +63,12 @@ class MovieDetailPage extends React.Component {
 		return (
 			<Fragment>
 				<Navigation />
-				{this.props.isLoading ? (
+				{this.props.loading ? (
 					<div className='loader'>
 						<ClipLoader
 							size={150}
 							color={'#D72525'}
-							loading={!!this.props.isLoading}
+							loading={this.props.loading}
 						/>
 					</div>
 				) : (
@@ -78,7 +78,7 @@ class MovieDetailPage extends React.Component {
 							addToWatchList={this.props.addToWatchList}
 						/>
 						<Category title={'Recommended'} />
-						<Recommended recommended={this.props.recommended} />
+						<Recommended />
 						<Footer />
 					</div>
 				)}
@@ -89,19 +89,18 @@ class MovieDetailPage extends React.Component {
 
 const mapStateToProps = (state) => {
 	return {
-		recommended: state.recommended,
 		page: state.page,
 		details: state.details,
 		cast: state.cast,
-		isLoading: state.isLoading,
+		loading: state.loading,
 	}
 }
 
 const mapDispatchToProps = (dispatch) => {
 	return {
 		getMovieDetails: (id) => dispatch(getMovieDetails(id)),
-		getMovieCast: (id) => dispatch(startGetMovieCast(id)),
-		getRecommended: (id, pageNum) => dispatch(startGetRecommended(id, pageNum)),
+		getMovieCast: (id) => dispatch(getMovieCast(id)),
+		getRecommended: (id, pageNum) => dispatch(getRecommended(id, pageNum)),
 		getPage: (query) => dispatch(getPage(query)),
 		addToWatchList: (movie) => dispatch(addToWatchList(movie)),
 	}

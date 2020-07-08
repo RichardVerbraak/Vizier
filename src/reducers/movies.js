@@ -30,6 +30,7 @@ const movieReducer = (state = initialState, action) => {
 			return {
 				...state,
 				details: action.payload,
+				loading: false,
 			}
 		case 'GET_SHOW_DETAILS':
 			return {
@@ -39,7 +40,8 @@ const movieReducer = (state = initialState, action) => {
 		case 'GET_MOVIE_CAST':
 			return {
 				...state,
-				cast: action.cast,
+				cast: action.payload,
+				loading: false,
 			}
 		case 'GET_SHOW_CAST':
 			return {
@@ -49,7 +51,8 @@ const movieReducer = (state = initialState, action) => {
 		case 'GET_RECOMMENDED':
 			return {
 				...state,
-				recommended: action.recommended,
+				recommended: action.payload,
+				loading: false,
 			}
 		case 'GET_RECOMMENDED_SHOWS':
 			return {
@@ -59,7 +62,7 @@ const movieReducer = (state = initialState, action) => {
 		case 'GET_SEARCH_RESULTS':
 			return {
 				...state,
-				movies: action.movies,
+				movies: action.payload,
 			}
 		case 'SET_WATCH_LIST':
 			return {
@@ -89,7 +92,7 @@ const movieReducer = (state = initialState, action) => {
 		case 'GET_TOTAL_PAGES':
 			return {
 				...state,
-				totalPages: action.totalPages,
+				totalPages: action.payload,
 			}
 		default:
 			return state

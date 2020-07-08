@@ -5,7 +5,7 @@ import ClipLoader from 'react-spinners/ClipLoader'
 import Navigation from './Navigation'
 import MovieList from './MovieList'
 import Footer from './Footer'
-import { startGetSearchResults, getPage } from '../actions/movies'
+import { getSearchResults, getPage } from '../actions/movies'
 
 // Somehow, fetch data from the Redux store and pass that down to the components
 // Pass handlers down to the Child components
@@ -50,18 +50,18 @@ class SearchPage extends React.Component {
 		return (
 			<Fragment>
 				<Navigation />
-				{this.props.isLoading ? (
+				{this.props.loading ? (
 					<div className='loader'>
 						<ClipLoader
 							size={150}
 							color={'#D72525'}
-							loading={!!this.props.isLoading}
+							loading={this.props.loading}
 						/>
 					</div>
 				) : (
 					<div className='container'>
 						<MovieList
-							isLoading={this.props.isLoading}
+							isLoading={this.props.loading}
 							resetPage={this.resetPage}
 							movies={this.props.movies}
 						/>
@@ -76,15 +76,14 @@ class SearchPage extends React.Component {
 const mapStateToProps = (state) => {
 	return {
 		movies: state.movies,
-		isLoading: state.isLoading,
+		loading: state.loading,
 		currentPage: state.currentPage,
 	}
 }
 
 const mapDispatchToProps = (dispatch) => {
 	return {
-		getSearchResults: (query, page) =>
-			dispatch(startGetSearchResults(query, page)),
+		getSearchResults: (query, page) => dispatch(getSearchResults(query, page)),
 		getPage: (query) => dispatch(getPage(query)),
 	}
 }

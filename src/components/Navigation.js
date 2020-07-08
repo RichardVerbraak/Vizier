@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link, NavLink, withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
-import { startGetSearchResults } from '../actions/movies'
+import { getSearchResults } from '../actions/movies'
 
 // TODO: The search filter should be a component of its own
 // Maybe the sign in button as well
@@ -85,7 +85,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
 	return {
-		getSearchResults: () => dispatch(startGetSearchResults()),
+		getSearchResults: () => dispatch(getSearchResults()),
 	}
 }
 

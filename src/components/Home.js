@@ -81,7 +81,6 @@ class HomePage extends React.Component {
 						<MovieList
 							addWatchList={this.props.addWatchList}
 							removeWatchList={this.props.removeWatchList}
-							isLoading={this.props.isLoading}
 							resetPage={this.resetPage}
 							movies={this.props.movies}
 							watchlist={this.props.watchlist}
@@ -97,11 +96,12 @@ class HomePage extends React.Component {
 	}
 }
 
+// Don't pass props down in all of the components just use redux??
+
 const mapStateToProps = (state) => {
 	return {
 		movies: state.movies,
 		watchlist: state.watchlist,
-		isLoading: state.isLoading,
 		loading: state.loading,
 		currentPage: state.currentPage,
 		totalPages: state.totalPages,
