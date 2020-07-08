@@ -1,5 +1,7 @@
 import React from 'react'
 import CastSlider from './CastSlider'
+import { connect } from 'react-redux'
+import { addToWatchList } from '../actions/movies'
 
 const Movie = ({ details, addToWatchList }) => {
 	return (
@@ -62,4 +64,18 @@ const Movie = ({ details, addToWatchList }) => {
 
 // {details.videos.results[0].key && <a className="movie__links--watchlist btn btn__trailer" href={`https://www.youtube.com/watch?v=${details.videos.results[0].key}`}>Trailer</a>}
 
-export default Movie
+const mapStateToProps = (state) => {
+	return {
+		details: state.details,
+	}
+}
+
+const mapDispatchToProps = (dispatch) => {
+	return {
+		addWatchList: (movie) => dispatch(addToWatchList(movie)),
+	}
+}
+
+const ConnectedMovie = connect(mapStateToProps, mapDispatchToProps)(Movie)
+
+export default ConnectedMovie

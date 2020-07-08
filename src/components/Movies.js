@@ -1,6 +1,8 @@
 import React from 'react'
+import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import ClipLoader from 'react-spinners/ClipLoader'
+import { addToWatchList, removeFromWatchList } from '../actions/movies'
 
 // Used a route for Movies that is being rendered inside the Dashboard component
 // Now Movies has access to the current URL
@@ -23,7 +25,6 @@ const Movies = ({
 	watchlist.forEach((movie) => {
 		watchlistIDs.push(movie.id)
 	})
-	console.log(watchlistIDs)
 
 	return (
 		<div className='movies'>
@@ -65,4 +66,21 @@ const Movies = ({
 	)
 }
 
-export default Movies
+const mapStateToProps = (state) => {
+	return {
+		movies: state.movies,
+		watchlist: state.watchlist,
+		loading: state.loading,
+	}
+}
+
+const mapDispatchToProps = (dispatch) => {
+	return {
+		addWatchList: (movie) => dispatch(addToWatchList(movie)),
+		removeWatchList: (movie) => dispatch(removeFromWatchList(movie)),
+	}
+}
+
+const ConnectedMovies = connect(mapStateToProps, mapDispatchToProps)(Movies)
+
+export default ConnectedMovies

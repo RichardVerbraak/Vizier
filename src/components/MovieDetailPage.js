@@ -5,7 +5,6 @@ import {
 	getMovieCast,
 	getRecommended,
 	getPage,
-	addToWatchList,
 } from '../actions/movies'
 
 import ClipLoader from 'react-spinners/ClipLoader'
@@ -24,10 +23,6 @@ import Footer from './Footer'
 // Add svg icons in the buttons
 
 class MovieDetailPage extends React.Component {
-	state = {
-		loading: true,
-	}
-
 	// If there is a search query --> parse the page number --> Fetch data based on the page number
 	componentDidMount() {
 		if (this.props.location.search) {
@@ -73,10 +68,7 @@ class MovieDetailPage extends React.Component {
 					</div>
 				) : (
 					<div className='container'>
-						<Movie
-							details={this.props.details}
-							addToWatchList={this.props.addToWatchList}
-						/>
+						<Movie />
 						<Category title={'Recommended'} />
 						<Recommended />
 						<Footer />
@@ -90,8 +82,6 @@ class MovieDetailPage extends React.Component {
 const mapStateToProps = (state) => {
 	return {
 		page: state.page,
-		details: state.details,
-		cast: state.cast,
 		loading: state.loading,
 	}
 }
@@ -102,7 +92,6 @@ const mapDispatchToProps = (dispatch) => {
 		getMovieCast: (id) => dispatch(getMovieCast(id)),
 		getRecommended: (id, pageNum) => dispatch(getRecommended(id, pageNum)),
 		getPage: (query) => dispatch(getPage(query)),
-		addToWatchList: (movie) => dispatch(addToWatchList(movie)),
 	}
 }
 

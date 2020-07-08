@@ -4,16 +4,10 @@ import ClipLoader from 'react-spinners/ClipLoader'
 
 import Navigation from './Navigation'
 import Filter from './Filter'
-import MovieList from './MovieList'
+import Movies from './Movies'
 import Footer from './Footer'
 
-import {
-	getMovies,
-	getPage,
-	addToWatchList,
-	removeFromWatchList,
-	startSetWatchList,
-} from '../actions/movies'
+import { getMovies, getPage, startSetWatchList } from '../actions/movies'
 import Category from './Category'
 
 // Helpful https://stackoverflow.com/questions/40352310/how-do-you-mix-componentdidmount-with-react-redux-connect
@@ -53,7 +47,7 @@ class HomePage extends React.Component {
 		}
 	}
 
-	// Passed down MovieList and then to Movies
+	// Passed down to Movies (Idk why I added this, maybe for a button later?)
 	resetPage = () => {
 		this.props.getPage()
 	}
@@ -77,13 +71,7 @@ class HomePage extends React.Component {
 							title={this.props.match.params.name}
 							media={'movies'}
 						/>
-						<MovieList
-							addWatchList={this.props.addWatchList}
-							removeWatchList={this.props.removeWatchList}
-							resetPage={this.resetPage}
-							movies={this.props.movies}
-							watchlist={this.props.watchlist}
-						/>
+						<Movies />
 						<Footer />
 					</div>
 				)}
@@ -96,8 +84,6 @@ class HomePage extends React.Component {
 
 const mapStateToProps = (state) => {
 	return {
-		movies: state.movies,
-		watchlist: state.watchlist,
 		loading: state.loading,
 	}
 }
@@ -106,8 +92,6 @@ const mapDispatchToProps = (dispatch) => {
 	return {
 		getMovies: (filter, page) => dispatch(getMovies(filter, page)),
 		getPage: (query) => dispatch(getPage(query)),
-		addWatchList: (movie) => dispatch(addToWatchList(movie)),
-		removeWatchList: (movie) => dispatch(removeFromWatchList(movie)),
 		setWatchList: () => dispatch(startSetWatchList()),
 	}
 }
