@@ -5,7 +5,7 @@ import { startSetWatchList } from '../actions/movies'
 import ClipLoader from 'react-spinners/ClipLoader'
 
 import Navigation from './Navigation'
-import MovieList from './MovieList'
+import Movies from './Movies'
 import Category from './Category'
 import Footer from './Footer'
 
@@ -19,19 +19,19 @@ class WatchListPage extends React.Component {
 		return (
 			<Fragment>
 				<Navigation />
-				{this.props.isLoading ? (
+				{this.props.loading ? (
 					<div className='loader'>
 						<ClipLoader
 							size={150}
 							color={'#D72525'}
-							loading={!!this.props.isLoading}
+							loading={this.props.loading}
 						/>
 					</div>
 				) : (
 					<div className='container'>
 						<Category title={'Your List'}></Category>
-						<MovieList movies={this.props.watchlist} />
-						<Footer></Footer>
+						<Movies movies={this.props.watchlist} />
+						<Footer />
 					</div>
 				)}
 			</Fragment>
@@ -42,7 +42,7 @@ class WatchListPage extends React.Component {
 const mapStateToProps = (state) => {
 	return {
 		watchlist: state.watchlist,
-		isLoading: state.isLoading,
+		loading: state.loading,
 	}
 }
 

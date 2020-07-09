@@ -1,7 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
-import ClipLoader from 'react-spinners/ClipLoader'
 import { addToWatchList, removeFromWatchList } from '../actions/movies'
 
 // Used a route for Movies that is being rendered inside the Dashboard component
@@ -12,11 +11,12 @@ import { addToWatchList, removeFromWatchList } from '../actions/movies'
 
 // Look at a cleaner faster solution for the add / remove watchlist button
 
+// TODO: Make this compatible with Watchlist page
+
 const Movies = ({
 	movies,
 	watchlist,
 	resetPage,
-	loading,
 	addWatchList,
 	removeWatchList,
 }) => {
@@ -32,16 +32,12 @@ const Movies = ({
 				return (
 					<div key={movie.id} className='movies__item'>
 						<Link to={`/movie/${movie.id}`} onClick={resetPage}>
-							{loading ? (
-								<ClipLoader size={60} color={'#D72525'} loading={loading} />
-							) : (
-								<img
-									key={movie.id}
-									src={`https://image.tmdb.org/t/p/w342${movie.poster_path}`}
-									className='movies__item-img'
-									alt={`A poster of ${movie.title}`}
-								></img>
-							)}
+							<img
+								key={movie.id}
+								src={`https://image.tmdb.org/t/p/w342${movie.poster_path}`}
+								className='movies__item-img'
+								alt={`A poster of ${movie.title}`}
+							></img>
 						</Link>
 						{watchlistIDs.includes(movie.id) ? (
 							<button

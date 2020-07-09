@@ -80,8 +80,6 @@ class HomePage extends React.Component {
 	}
 }
 
-// Don't pass props down in all of the components just use redux??
-
 const mapStateToProps = (state) => {
 	return {
 		loading: state.loading,

@@ -27,12 +27,12 @@ class CastSlider extends React.Component {
 				) : (
 					this.props.cast.map((cast) => {
 						return (
-							<a key={cast.id}>
+							<a href='!#' key={cast.id}>
 								<img
 									key={cast.id}
 									className='movie__cast--img'
 									src={`https://image.tmdb.org/t/p/w185/${cast.profile_path}`}
-									alt={`Photo of ${cast.name}`}
+									alt={`${cast.name}`}
 								></img>
 							</a>
 						)

@@ -201,7 +201,7 @@ export const startSetWatchList = () => {
 export const getPage = (page = 1) => {
 	return {
 		type: 'GET_PAGE',
-		currentPage: page,
+		payload: page,
 	}
 }
 

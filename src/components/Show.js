@@ -37,7 +37,7 @@ class Show extends React.Component {
 					</div>
 
 					<div className='movie__links'>
-						<a className='movie__links--watchlist btn btn__watchlist'>
+						<a href='!#' className='movie__links--watchlist btn btn__watchlist'>
 							Add to watchlist
 						</a>
 						<a
@@ -46,7 +46,9 @@ class Show extends React.Component {
 						>
 							IMDB
 						</a>
-						<a className='movie__links--watchlist btn btn__trailer'>Trailer</a>
+						<a href='!#' className='movie__links--watchlist btn btn__trailer'>
+							Trailer
+						</a>
 					</div>
 				</div>
 			</div>
