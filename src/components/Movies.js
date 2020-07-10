@@ -6,12 +6,11 @@ import { addToWatchList, removeFromWatchList } from '../actions/movies'
 // Used a route for Movies that is being rendered inside the Dashboard component
 // Now Movies has access to the current URL
 
-// Change later so it also listens for either popular movies or tv shows
-// TODO: Fix spinning loader inside if img isnt there
-
 // Look at a cleaner faster solution for the add / remove watchlist button
 
+// TODO: Fix spinning loader inside if img isnt there
 // TODO: Make this compatible with Watchlist page
+// TODO: Create a react key to remove the warning
 
 const Movies = ({
 	movies,

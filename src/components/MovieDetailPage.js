@@ -15,12 +15,13 @@ import Movie from './Movie'
 import Recommended from './Recommended'
 import Footer from './Footer'
 
-// Rename to movie page for different containers (grid?)
 // Make a seperate component for the movie image so it can be reused?
 // Maybe make <a> tags of the genre tags, to give a page based on genre clicked?
 
 // Add genre in with jsx and a | after every genre
 // Add svg icons in the buttons
+
+//! Fetch data inside of the components and not all in this component?
 
 class MovieDetailPage extends React.Component {
 	// If there is a search query --> parse the page number --> Fetch data based on the page number
@@ -58,7 +59,7 @@ class MovieDetailPage extends React.Component {
 		return (
 			<Fragment>
 				<Navigation />
-				{this.props.loading ? (
+				{this.props.loading && !this.props.details.length > 0 ? (
 					<div className='loader'>
 						<ClipLoader
 							size={150}
@@ -83,6 +84,7 @@ const mapStateToProps = (state) => {
 	return {
 		page: state.page,
 		loading: state.loading,
+		details: state.details,
 	}
 }
 
